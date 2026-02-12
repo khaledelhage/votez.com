@@ -1,0 +1,34 @@
+{
+  "redirects": [
+    {
+      "source": "/blogue/acceuil/",
+      "destination": "/blogue/",
+      "permanent": true
+    },
+    {
+      "source": "/blogue/acceuil",
+      "destination": "/blogue/",
+      "permanent": true
+    },
+    {
+      "source": "/blogue/article/pourquoi-le-vote-electronique-dans-votre-organisation/",
+      "destination": "/blogue/pourquoi-le-vote-electronique/",
+      "permanent": true
+    },
+    {
+      "source": "/blogue/article/pourquoi-le-vote-electronique-dans-votre-organisation",
+      "destination": "/blogue/pourquoi-le-vote-electronique/",
+      "permanent": true
+    },
+    {
+      "source": "/blogue/article/vote-electronique-equite-neutralite/",
+      "destination": "/blogue/vote-electronique-equite-neutralite/",
+      "permanent": true
+    },
+    {
+      "source": "/blogue/article/vote-electronique-equite-neutralite",
+      "destination": "/blogue/vote-electronique-equite-neutralite/",
+      "permanent": true
+    }
+  ]
+}

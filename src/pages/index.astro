@@ -112,7 +112,7 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
           Le site de votation, les codes d'accès, la communication avec les votant·e·s, les rappels et les résultats : notre équipe gère chaque étape.
         </p>
       </div>
-      <div class="services-list">
+      <div class="services-grid">
         {services.map((service, i) => (
           <ServiceCard
             title={service.title}
@@ -140,7 +140,7 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         <a href="#contact" class="btn btn-light">En savoir plus</a>
       </div>
       <div class="mission-image">
-        <img src="/images/mission.png.jpg" alt="Notre mission" loading="lazy" />
+        <img src="/images/engagement-photo.jpg" alt="Notre engagement" loading="lazy" />
       </div>
     </div>
   </section>
@@ -202,11 +202,11 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 </BaseLayout>
 
 <style>
-  /* Services */
-  .services-list {
-    max-width: 44rem;
-    margin: 0 auto;
-    border-top: 1px solid var(--color-border);
+  /* Services grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
   /* Mission */
@@ -239,6 +239,10 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   .mission-image {
     border-radius: 40% 60% 60% 40% / 60% 40% 70% 30%;
     overflow: hidden;
+  }
+
+  .mission-image img {
+    filter: sepia(0.35) saturate(1.1) hue-rotate(-5deg) brightness(1.02);
   }
 
   /* Piliers */
@@ -341,6 +345,11 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   }
 
   @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
     .mission-layout {
       grid-template-columns: 1fr;
       gap: 2.5rem;
