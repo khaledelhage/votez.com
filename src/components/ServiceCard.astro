@@ -28,6 +28,19 @@ const { title, description, image, index } = Astro.props;
     align-items: start;
     padding: 2rem 0;
     border-bottom: 1px solid var(--color-border);
+    transition: transform var(--transition-soft);
+  }
+
+  .service-card:nth-child(odd) {
+    transform: rotate(-0.3deg);
+  }
+
+  .service-card:nth-child(even) {
+    transform: rotate(0.2deg);
+  }
+
+  .service-card:hover {
+    transform: rotate(0deg) translateX(4px);
   }
 
   .service-image {
@@ -49,8 +62,8 @@ const { title, description, image, index } = Astro.props;
 
   .service-number {
     font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--color-text-light);
+    font-weight: 700;
+    color: var(--color-sage);
     letter-spacing: 0.05em;
     display: block;
     margin-bottom: 0.5rem;
@@ -58,7 +71,6 @@ const { title, description, image, index } = Astro.props;
 
   .service-title {
     font-size: 1.125rem;
-    font-weight: 600;
     color: var(--color-primary);
     margin-bottom: 0.5rem;
     letter-spacing: -0.01em;
@@ -75,6 +87,15 @@ const { title, description, image, index } = Astro.props;
       grid-template-columns: 5rem 1fr;
       gap: 1.25rem;
       padding: 1.5rem 0;
+    }
+
+    .service-card:nth-child(odd),
+    .service-card:nth-child(even) {
+      transform: none;
+    }
+
+    .service-card:hover {
+      transform: translateX(4px);
     }
   }
 </style>

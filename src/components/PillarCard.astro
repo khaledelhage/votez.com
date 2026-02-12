@@ -20,13 +20,31 @@ const { title, description, icon } = Astro.props;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
+    transition: transform var(--transition), box-shadow var(--transition-soft);
+  }
+
+  .pillar-card:nth-child(1) {
+    transform: rotate(-0.5deg);
+  }
+
+  .pillar-card:nth-child(2) {
+    transform: rotate(0.3deg);
+  }
+
+  .pillar-card:nth-child(3) {
+    transform: rotate(-0.4deg);
+  }
+
+  .pillar-card:hover {
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow: 0 12px 40px rgba(61, 46, 30, 0.08);
   }
 
   .pillar-icon {
     width: 2.5rem;
     height: 2.5rem;
     margin-bottom: 1.5rem;
-    color: var(--color-cta);
+    color: var(--color-accent);
   }
 
   .pillar-icon :global(svg) {
@@ -36,7 +54,6 @@ const { title, description, icon } = Astro.props;
 
   .pillar-title {
     font-size: 1.125rem;
-    font-weight: 600;
     color: var(--color-primary);
     margin-bottom: 0.75rem;
   }
@@ -45,5 +62,17 @@ const { title, description, icon } = Astro.props;
     font-size: 0.9375rem;
     color: var(--color-text-light);
     line-height: 1.65;
+  }
+
+  @media (max-width: 768px) {
+    .pillar-card:nth-child(1),
+    .pillar-card:nth-child(2),
+    .pillar-card:nth-child(3) {
+      transform: none;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-4px);
+    }
   }
 </style>

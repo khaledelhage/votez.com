@@ -18,7 +18,7 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
@@ -114,16 +114,16 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(250, 250, 245, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .header.scrolled {
-    border-bottom-color: var(--color-border);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border-bottom-color: rgba(229, 221, 211, 0.5);
+    box-shadow: 0 1px 8px rgba(61, 46, 30, 0.04);
   }
 
   .nav {
@@ -156,7 +156,7 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
     height: 2px;
     background-color: var(--color-text);
     border-radius: 1px;
-    transition: all var(--transition);
+    transition: all var(--transition-soft);
   }
 
   .nav-links {
@@ -169,31 +169,32 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
   .nav-links a {
     color: var(--color-text-light);
     font-size: 0.875rem;
-    font-weight: 500;
-    transition: color var(--transition);
+    font-weight: 600;
+    transition: color var(--transition-soft);
   }
 
   .nav-links a:hover {
-    color: var(--color-text);
+    color: var(--color-accent);
   }
 
   .nav-cta {
-    background-color: var(--color-cta);
+    background-color: var(--color-accent);
     color: #fff !important;
-    padding: 0.5rem 1.25rem;
-    border-radius: var(--radius);
-    font-weight: 600 !important;
-    transition: background-color var(--transition) !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700 !important;
+    transition: background-color var(--transition-soft), transform var(--transition) !important;
   }
 
   .nav-cta:hover {
-    background-color: var(--color-cta-hover);
+    background-color: var(--color-accent-hover);
     color: #fff !important;
+    transform: translateY(-1px);
   }
 
   /* Footer */
   .footer {
-    background-color: var(--color-navy);
+    background-color: var(--color-dark);
     color: #fff;
     padding: 5rem 2rem 2.5rem;
   }
@@ -218,18 +219,19 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
   }
 
   .footer-tagline {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.875rem;
     line-height: 1.6;
   }
 
   .footer-heading {
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-body);
   }
 
   .footer-list {
@@ -238,12 +240,12 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
     flex-direction: column;
     gap: 0.625rem;
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .footer-list a {
-    color: rgba(255, 255, 255, 0.6);
-    transition: color var(--transition);
+    color: rgba(255, 255, 255, 0.5);
+    transition: color var(--transition-soft);
   }
 
   .footer-list a:hover {
@@ -251,11 +253,11 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 2rem;
     text-align: center;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.35);
   }
 
   @media (max-width: 768px) {
@@ -273,7 +275,7 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
       top: 100%;
       left: 0;
       right: 0;
-      background: #fff;
+      background: var(--color-bg);
       flex-direction: column;
       padding: 1.5rem 1.25rem;
       gap: 0.75rem;
