@@ -8,42 +8,42 @@ import PillarCard from '../components/PillarCard.astro';
 const services = [
   {
     title: 'Création de campagnes de vote',
-    description: 'Nous vous aidons à créer des campagnes électorales efficaces. Notre équipe vous accompagne pour personnaliser le site de votation selon vos exigences, préparant des pages informatives, des recommandations de vote, et des présentations des candidats.',
+    description: 'Nous vous aidons à créer des campagnes électorales efficaces. Notre équipe personnalise le site de votation selon vos exigences, préparant des pages informatives, des recommandations de vote et des présentations des candidats.',
     image: '/images/campagne_1x.png',
   },
   {
     title: 'Paramétrage des scrutins',
-    description: 'Notre plateforme permet des scrutins uniques ou multiples, avec des types de votes adaptés à vos besoins : élection ou vote de proposition. Chaque scrutin peut être configuré avec des paramètres spécifiques, comme le vote blanc, ou segmenté par région ou poste.',
+    description: 'Scrutins uniques ou multiples, avec des types de votes adaptés à vos besoins : élection ou vote de proposition. Chaque scrutin peut être configuré avec des paramètres spécifiques, comme le vote blanc, ou segmenté par région ou poste.',
     image: '/images/illustrationscrutins_1x.png',
   },
   {
     title: 'Présentation des candidat·e·s',
-    description: 'Offrez à chaque candidat une page personnalisée pour se présenter et partager sa plateforme. Les candidats peuvent ajouter des photos, des vidéos, et des liens vers leurs réseaux sociaux ou sites web.',
+    description: 'Chaque candidat dispose d\'une page personnalisée pour se présenter et partager sa plateforme. Photos, vidéos et liens vers les réseaux sociaux pour une présentation transparente et accessible.',
     image: '/images/illustrationcandidats_1x.png',
   },
   {
     title: 'Génération des codes d\'accès',
-    description: 'Votez.com assure une authentification sécurisée avec des méthodes variées. Que ce soit par connexion en un clic via un jeton sécurisé ou par code et mot de passe, notre système garantit une expérience de vote sûre et adaptable.',
+    description: 'Authentification sécurisée avec des méthodes variées. Connexion en un clic via un jeton sécurisé ou par code et mot de passe, notre système garantit une expérience de vote sûre et adaptable.',
     image: '/images/illustrationacces2_1x.png',
   },
   {
     title: 'Communication avec les votant·e·s',
-    description: 'Nous gérons l\'envoi des instructions de vote et des codes d\'accès par email ou par courrier postal, selon vos préférences. Notre service comprend également des rappels avant et pendant le vote.',
+    description: 'Envoi des instructions de vote et des codes d\'accès par email ou par courrier postal. Rappels automatisés avant et pendant le vote pour maximiser la participation.',
     image: '/images/illustrationcourrier_1x.png',
   },
   {
     title: 'Ouverture du vote',
-    description: 'Le site de votation peut être mis en ligne avant le début du vote pour permettre la présentation des candidats. Le vote n\'est possible que pendant la période d\'ouverture des scrutins, avec des options de modification des choix si nécessaire.',
+    description: 'Le site de votation peut être mis en ligne avant le début du vote pour présenter les candidats. Le vote est contrôlé pendant la période d\'ouverture des scrutins, avec options de modification des choix.',
     image: '/images/illustrationvote_1x.png',
   },
   {
     title: 'Annonce des résultats',
-    description: 'Une fois la période de vote terminée, les résultats sont annoncés à l\'administrateur de la campagne. Les données anonymes du vote sont disponibles pour téléchargement, et le site reste actif une semaine après la clôture.',
+    description: 'Les résultats sont communiqués à l\'administrateur dès la clôture. Les données anonymes sont disponibles pour téléchargement, et le site reste actif une semaine après pour consultation.',
     image: '/images/ilustrationresultats_1x.png',
   },
   {
     title: 'Audit du vote',
-    description: 'Nous proposons un protocole d\'audit pour garantir que chaque vote est correctement enregistré. Lorsqu\'un vote est soumis, un numéro de reçu est généré, permettant aux votants de vérifier leurs votes.',
+    description: 'Protocole d\'audit garantissant que chaque vote est correctement enregistré. Un numéro de reçu est généré pour chaque vote, permettant aux votants de vérifier leurs choix.',
     image: '/images/illustrationrecus_1x.png',
   },
 ];
@@ -71,7 +71,7 @@ const faqs = [
   },
   {
     question: 'Que se passe-t-il après la clôture du vote?',
-    answer: 'À la fin du scrutin, les résultats sont immédiatement communiqués à la personne responsable de la campagne dans votre organisation. Un document contenant les données du vote vous est acheminé dans les minutes qui suivent la fermeture de la période de vote. Ce document est signé par la personne ressource chez Neosapiens qui aura administré le vote pour vous.',
+    answer: 'À la fin du scrutin, les résultats sont immédiatement communiqués à la personne responsable de la campagne dans votre organisation. Un document contenant les données du vote vous est acheminé dans les minutes qui suivent la fermeture de la période de vote. Ce document est signé par la personne ressource chez Neosapiens qui aura administré le vote.',
   },
   {
     question: 'Offrez-vous un support tout au long du processus électoral?',
@@ -89,44 +89,36 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 
   <!-- À propos -->
   <section class="section">
-    <div class="section-inner about-grid">
-      <div class="about-content">
-        <p class="section-label">À propos</p>
-        <h2 class="section-title">Une solution de vote électronique développée par Neosapiens</h2>
-        <p class="about-text">
-          Neosapiens oeuvre dans le domaine du développement de systèmes d'information essentiels pour la mission syndicale depuis 2002. Votez.com est une plateforme de vote électronique conçue pour offrir une solution complète et sécurisée aux organisations souhaitant moderniser et optimiser leurs processus électoraux.
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">À propos</span>
+        <h2 class="section-title">Au service de la mission syndicale depuis 2002</h2>
+        <p class="section-subtitle">
+          Neosapiens développe des systèmes d'information essentiels pour les organisations syndicales. Votez.com est une plateforme conçue pour offrir une solution complète et sécurisée aux organisations souhaitant moderniser leurs processus électoraux.
         </p>
-        <p class="about-text">
-          Notre service facilite la gestion de scrutins variés, de la création de campagnes personnalisées à l'annonce des résultats, en passant par une gestion rigoureuse de la communication avec les votants.
-        </p>
-      </div>
-      <div class="about-stats">
-        <div class="stat">
-          <span class="stat-number">20+</span>
-          <span class="stat-label">années d'expérience</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">hébergé au Québec</span>
-        </div>
       </div>
     </div>
   </section>
 
+  <div class="divider"></div>
+
   <!-- Services -->
-  <section class="section section-alt" id="services">
+  <section class="section" id="services">
     <div class="section-inner">
-      <p class="section-label">Nos services</p>
-      <h2 class="section-title">Nous vous accompagnons du début à la fin</h2>
-      <p class="section-subtitle">
-        Notre équipe s'occupe de tout : le site de votation, la génération des codes d'accès, la communication avec les votant·e·s, les rappels et la communication des résultats.
-      </p>
-      <div class="services-grid">
-        {services.map((service) => (
+      <div class="section-header">
+        <span class="section-label">Nos services</span>
+        <h2 class="section-title">Un accompagnement complet, du début à la fin</h2>
+        <p class="section-subtitle">
+          Le site de votation, les codes d'accès, la communication avec les votant·e·s, les rappels et les résultats : notre équipe gère chaque étape.
+        </p>
+      </div>
+      <div class="services-list">
+        {services.map((service, i) => (
           <ServiceCard
             title={service.title}
             description={service.description}
             image={service.image}
+            index={i + 1}
           />
         ))}
       </div>
@@ -134,17 +126,18 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   </section>
 
   <!-- Mission -->
-  <section class="section" id="mission">
-    <div class="section-inner mission-grid">
+  <section class="section section-alt" id="mission">
+    <div class="section-inner mission-layout">
       <div class="mission-content">
-        <p class="section-label">Notre engagement</p>
-        <h2 class="section-title">Faciliter l'exercice de la démocratie dans votre organisation</h2>
+        <span class="section-label">Notre engagement</span>
+        <h2 class="mission-title">Faciliter l'exercice de la démocratie dans votre organisation</h2>
         <p class="mission-text">
-          Votez.com est conçue pour garantir que chaque vote est traité avec le plus haut niveau de précision et de confidentialité. Nous appliquons des protocoles de sécurité stricts pour protéger l'intégrité de chaque élection, offrant ainsi une plateforme sur laquelle les organisations peuvent compter pour mener leurs élections en toute confiance.
+          Votez.com garantit que chaque vote est traité avec le plus haut niveau de précision et de confidentialité. Nous appliquons des protocoles de sécurité stricts pour protéger l'intégrité de chaque élection.
         </p>
         <p class="mission-text">
           En plus de notre technologie avancée, nous proposons un accompagnement personnalisé à chaque étape du processus électoral.
         </p>
+        <a href="#contact" class="btn btn-light">En savoir plus</a>
       </div>
       <div class="mission-image">
         <img src="/images/mission.png.jpg" alt="Notre mission" loading="lazy" />
@@ -152,19 +145,13 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-inner">
-      <h2 class="cta-title">Vous planifiez une campagne de vote?</h2>
-      <p class="cta-text">Faites-nous part de vos besoins, nous nous occupons du reste.</p>
-      <a href="#contact" class="btn btn-primary">Contactez-nous</a>
-    </div>
-  </section>
-
-  <!-- 3 Piliers -->
-  <section class="section pillars">
+  <!-- Piliers -->
+  <section class="section">
     <div class="section-inner">
-      <p class="pillars-label">Pourquoi Votez.com</p>
+      <div class="section-header">
+        <span class="section-label">Pourquoi Votez.com</span>
+        <h2 class="section-title">Une plateforme pensée pour la confiance</h2>
+      </div>
       <div class="pillars-grid">
         <PillarCard
           title="Service complet et personnalisé"
@@ -173,7 +160,7 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         />
         <PillarCard
           title="Intégrité et sécurité"
-          description="Protocoles d'authentification avancés et confidentialité rigoureuse. L'infrastructure est hébergée exclusivement au Québec pour une conformité optimale."
+          description="Protocoles d'authentification avancés et confidentialité rigoureuse. Infrastructure hébergée exclusivement au Québec pour une conformité optimale."
           icon={iconIntegrite}
         />
         <PillarCard
@@ -185,99 +172,69 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     </div>
   </section>
 
-  <!-- CTA final -->
-  <section class="section">
-    <div class="section-inner cta-final">
-      <p class="cta-final-badge">Fièrement réalisé à Québec</p>
-      <h2 class="section-title cta-final-title">Prêt à moderniser vos élections?</h2>
-      <p class="cta-final-text">
-        Découvrez comment Votez.com peut vous aider à organiser des élections sécurisées et efficaces. Demandez une démonstration dès aujourd'hui pour explorer toutes nos fonctionnalités.
-      </p>
-      <a href="#contact" class="btn btn-primary">Demander une démonstration</a>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="cta-badge">Fièrement réalisé à Québec</span>
+      <h2 class="cta-title">Vous planifiez une campagne de vote?</h2>
+      <p class="cta-text">Découvrez comment Votez.com peut simplifier et sécuriser vos élections.</p>
+      <a href="#contact" class="btn btn-primary btn-lg">Demander une démonstration</a>
     </div>
   </section>
 
   <!-- FAQ -->
   <section class="section section-alt" id="faq">
-    <div class="section-inner faq-section">
-      <p class="section-label">Questions fréquentes</p>
-      <h2 class="section-title">FAQ</h2>
-      <div class="faq-list">
-        {faqs.map((faq) => (
-          <FaqItem question={faq.question} answer={faq.answer} />
-        ))}
+    <div class="section-inner">
+      <div class="faq-layout">
+        <div class="faq-header">
+          <span class="section-label">FAQ</span>
+          <h2 class="section-title">Questions fréquentes</h2>
+          <p class="faq-header-text">Tout ce que vous devez savoir sur Votez.com et le vote électronique.</p>
+        </div>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <FaqItem question={faq.question} answer={faq.answer} />
+          ))}
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* À propos */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .about-text {
-    color: var(--color-text-light);
-    line-height: 1.7;
-    font-size: 1.0625rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .about-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding-top: 3rem;
-  }
-
-  .stat {
-    text-align: center;
-    padding: 1.75rem 2.5rem;
-    background: var(--color-bg-alt);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-  }
-
-  .stat-number {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1.1;
-  }
-
-  .stat-label {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--color-text-light);
-    margin-top: 0.25rem;
-  }
-
   /* Services */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-    margin-top: 3rem;
+  .services-list {
+    max-width: 44rem;
+    margin: 0 auto;
+    border-top: 1px solid var(--color-border);
   }
 
   /* Mission */
-  .mission-grid {
+  .mission-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
   }
 
+  .mission-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
   .mission-text {
     color: var(--color-text-light);
     line-height: 1.7;
     font-size: 1.0625rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .mission-content .btn {
+    margin-top: 1rem;
   }
 
   .mission-image {
@@ -285,140 +242,110 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     overflow: hidden;
   }
 
-  /* CTA section */
-  .cta-section {
-    background-color: var(--color-cta-light);
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-
-  .cta-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  .cta-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .cta-text {
-    font-size: 1.0625rem;
-    color: var(--color-text-light);
-    margin-bottom: 1.75rem;
-  }
-
   /* Piliers */
-  .pillars {
-    background-color: var(--color-navy);
-    color: #fff;
-  }
-
-  .pillars-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.45);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
-  /* CTA Final */
-  .cta-final {
+  /* CTA */
+  .cta-section {
+    background-color: var(--color-navy);
+    color: #fff;
+    padding: 6rem 2rem;
     text-align: center;
-    max-width: 36rem;
-    padding: 2rem 0;
   }
 
-  .cta-final-badge {
+  .cta-inner {
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+
+  .cta-badge {
     display: inline-block;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-cta);
-    background: var(--color-cta-light);
-    padding: 0.375rem 1rem;
-    border-radius: 2rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 1.5rem;
   }
 
-  .cta-final-title {
-    margin-bottom: 1rem;
+  .cta-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
   }
 
-  .cta-final-text {
+  .cta-text {
     font-size: 1.0625rem;
-    color: var(--color-text-light);
-    line-height: 1.7;
-    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 2.5rem;
+    line-height: 1.65;
+  }
+
+  .cta-inner .btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
   }
 
   /* FAQ */
-  .faq-section {
-    max-width: 42rem;
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .faq-header .section-title {
+    text-align: left;
+  }
+
+  .faq-header-text {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.65;
+    margin-top: 0.75rem;
   }
 
   .faq-list {
-    margin-top: 2rem;
     border-top: 1px solid var(--color-border);
   }
 
   @media (max-width: 768px) {
-    .about-grid {
+    .mission-layout {
       grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .about-stats {
-      flex-direction: row;
-      padding-top: 0;
-    }
-
-    .stat {
-      flex: 1;
-      padding: 1.25rem 1rem;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .mission-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 2.5rem;
     }
 
     .pillars-grid {
       grid-template-columns: 1fr;
     }
 
-    .cta-title {
-      font-size: 1.5rem;
-    }
-
     .cta-section {
-      padding: 3rem 1.25rem;
+      padding: 4rem 1.25rem;
     }
-  }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .cta-title {
+      font-size: 1.75rem;
+    }
+
+    .faq-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .faq-header {
+      position: static;
     }
   }
 </style>

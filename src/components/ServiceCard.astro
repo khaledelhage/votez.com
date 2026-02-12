@@ -3,43 +3,38 @@ interface Props {
   title: string;
   description: string;
   image: string;
+  index: number;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, index } = Astro.props;
 ---
 
 <div class="service-card">
   <div class="service-image">
     <img src={image} alt={title} loading="lazy" />
   </div>
-  <h3 class="service-title">{title}</h3>
-  <p class="service-desc">{description}</p>
+  <div class="service-body">
+    <span class="service-number">{String(index).padStart(2, '0')}</span>
+    <h3 class="service-title">{title}</h3>
+    <p class="service-desc">{description}</p>
+  </div>
 </div>
 
 <style>
   .service-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  }
-
-  .service-card:hover {
-    box-shadow: var(--shadow-lg);
-    border-color: transparent;
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .service-image {
-    width: 100%;
-    aspect-ratio: 4/3;
-    border-radius: var(--radius);
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-bottom: 1.25rem;
     background-color: var(--color-bg-alt);
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .service-image img {
@@ -48,16 +43,38 @@ const { title, description, image } = Astro.props;
     object-fit: cover;
   }
 
-  .service-title {
-    font-size: 1rem;
+  .service-body {
+    padding-top: 0.25rem;
+  }
+
+  .service-number {
+    font-size: 0.75rem;
     font-weight: 600;
-    color: var(--color-primary);
+    color: var(--color-text-light);
+    letter-spacing: 0.05em;
+    display: block;
     margin-bottom: 0.5rem;
   }
 
+  .service-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
   .service-desc {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     color: var(--color-text-light);
-    line-height: 1.6;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 768px) {
+    .service-card {
+      grid-template-columns: 5rem 1fr;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+    }
   }
 </style>

@@ -1,33 +1,26 @@
 :root {
-  /* Palette — trust-first, minimal */
   --color-bg: #ffffff;
-  --color-bg-alt: #f8fafc;
-  --color-text: #111827;
-  --color-text-light: #6b7280;
-  --color-primary: #1e3a5f;
-  --color-primary-hover: #152d4a;
-  --color-cta: #2563eb;
-  --color-cta-hover: #1d4ed8;
-  --color-cta-light: #eff6ff;
-  --color-navy: #0b1d33;
-  --color-border: #e5e7eb;
+  --color-bg-alt: #f7f8fa;
+  --color-text: #1a1f36;
+  --color-text-light: #6b7294;
+  --color-primary: #1a2b4a;
+  --color-cta: #2558d3;
+  --color-cta-hover: #1c47b0;
+  --color-cta-light: #eef3ff;
+  --color-navy: #0c1829;
+  --color-border: #e3e5ed;
   --color-surface: #ffffff;
 
-  /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --max-width: 1080px;
+  --radius: 8px;
+  --radius-lg: 12px;
 
-  /* Layout */
-  --max-width: 1140px;
-  --radius: 10px;
-  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-
-  /* Motion */
   --transition: 0.2s ease;
 }
 
@@ -48,7 +41,7 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background-color: var(--color-bg);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -70,18 +63,23 @@ img {
 }
 
 h1, h2, h3, h4 {
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   color: var(--color-primary);
 }
 
 /* Sections */
 .section {
-  padding: 6rem 2rem;
+  padding: 7rem 2rem;
 }
 
 .section-alt {
   background-color: var(--color-bg-alt);
+}
+
+.section-dark {
+  background-color: var(--color-navy);
+  color: #fff;
 }
 
 .section-inner {
@@ -89,34 +87,40 @@ h1, h2, h3, h4 {
   margin: 0 auto;
 }
 
+.section-header {
+  text-align: center;
+  max-width: 34rem;
+  margin: 0 auto 4rem;
+}
+
 .section-label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   color: var(--color-cta);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .section-subtitle {
   font-size: 1.125rem;
   color: var(--color-text-light);
-  max-width: 38rem;
   line-height: 1.7;
 }
 
 /* Buttons */
 .btn {
   display: inline-block;
-  padding: 0.8125rem 1.75rem;
-  border-radius: var(--radius);
+  padding: 0.875rem 2rem;
+  border-radius: 6px;
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
@@ -133,24 +137,46 @@ h1, h2, h3, h4 {
 .btn-primary:hover {
   background-color: var(--color-cta-hover);
   color: #fff;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 12px rgba(37, 88, 211, 0.25);
 }
 
 .btn-outline {
   background-color: transparent;
   color: #fff;
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
 }
 
 .btn-outline:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
+}
+
+.btn-light {
+  background-color: var(--color-cta-light);
+  color: var(--color-cta);
+}
+
+.btn-light:hover {
+  background-color: #dde6ff;
+  color: var(--color-cta-hover);
+}
+
+/* Divider */
+.divider {
+  width: 3rem;
+  height: 2px;
+  background-color: var(--color-border);
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
   .section {
     padding: 4rem 1.25rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
   }
 
   .section-title {
