@@ -1,0 +1,272 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Votez.com - Plateforme de vote électronique sécurisée' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <img src="/images/logo-votez.png" alt="Votez.com" class="logo-img" />
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#mission">Mission</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/blogue">Blogue</a></li>
+          <li><a href="/#contact" class="nav-cta">Nous contacter</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer" id="contact">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img src="/images/logo-votez.png" alt="Votez.com" class="footer-logo" />
+            <p class="footer-tagline">Plateforme de vote électronique sécurisée pour les organisations.</p>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Contact</h4>
+            <ul class="footer-list">
+              <li>1-866-873-1591</li>
+              <li><a href="mailto:info@votez.com">info@votez.com</a></li>
+              <li>1305 rue du Blizzard #105</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Nos solutions</h4>
+            <ul class="footer-list">
+              <li><a href="https://neosapiens.com" target="_blank" rel="noopener">Neosapiens.com</a></li>
+              <li><a href="https://monsyndicat.com" target="_blank" rel="noopener">MonSyndicat.com</a></li>
+              <li><a href="https://unionpulse.com" target="_blank" rel="noopener">UnionPulse.com</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Suivez-nous</h4>
+            <ul class="footer-list">
+              <li><a href="https://www.linkedin.com/company/neosapiens" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Neosapiens. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      toggle?.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        navLinks?.classList.toggle('open');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          toggle?.setAttribute('aria-expanded', 'false');
+          navLinks?.classList.remove('open');
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 2rem;
+    width: auto;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all var(--transition);
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-primary-dark);
+  }
+
+  .nav-cta {
+    background-color: var(--color-primary);
+    color: #fff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 600 !important;
+  }
+
+  .nav-cta:hover {
+    background-color: var(--color-primary-dark);
+    color: #fff !important;
+  }
+
+  .footer {
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 4rem 2rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-logo {
+    height: 2rem;
+    width: auto;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer-tagline {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .footer-heading {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer-list a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer-list a:hover {
+    color: #fff;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      padding: 1rem 1.25rem;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+      gap: 1rem;
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

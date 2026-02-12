@@ -1,0 +1,140 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  date?: string;
+  readTime?: string;
+  image?: string;
+}
+
+const { title, description, date, readTime, image } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Votez.com`} description={description}>
+  <article class="blog-article">
+    <div class="article-inner">
+      <header class="article-header">
+        {date && <time class="article-date">{date}</time>}
+        {readTime && <span class="article-read-time">{readTime}</span>}
+        <h1 class="article-title">{title}</h1>
+      </header>
+      {image && (
+        <div class="article-hero">
+          <img src={image} alt={title} />
+        </div>
+      )}
+      <div class="article-content">
+        <slot />
+      </div>
+      <footer class="article-footer">
+        <a href="/blogue" class="back-link">&larr; Retour au blogue</a>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-article {
+    padding: 3rem 2rem 5rem;
+  }
+
+  .article-inner {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .article-date {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    text-transform: capitalize;
+  }
+
+  .article-read-time {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-left: 1rem;
+  }
+
+  .article-read-time::before {
+    content: '·';
+    margin-right: 1rem;
+  }
+
+  .article-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-top: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .article-hero {
+    margin-bottom: 2.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .article-content :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-content :global(h3) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-content :global(p) {
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+    line-height: 1.8;
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .back-link {
+    font-weight: 500;
+    color: var(--color-primary-dark);
+  }
+
+  .back-link:hover {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .blog-article {
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    .article-title {
+      font-size: 1.75rem;
+    }
+  }
+</style>

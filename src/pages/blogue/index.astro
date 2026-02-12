@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const articles = [
+  {
+    title: 'Comment le vote électronique garantit l\'équité et la neutralité',
+    date: 'Janvier 2025',
+    readTime: '2 min de lecture',
+    excerpt: 'Dans un contexte où les processus décisionnels doivent être transparents, accessibles et impartiaux, le vote électronique se positionne comme une réponse moderne aux problèmes souvent rencontrés avec les méthodes traditionnelles.',
+    slug: 'vote-electronique-equite-neutralite',
+    image: '/images/blog-equite-neutralite.png',
+  },
+  {
+    title: 'Pourquoi choisir le vote électronique pour votre organisation?',
+    date: 'Novembre 2024',
+    readTime: '2 min de lecture',
+    excerpt: 'Organiser des votes lors d\'une assemblée générale ou via d\'autres moyens tels que le courrier ou le téléphone présente de nombreux défis. Le vote électronique se présente comme une solution moderne, adaptée aux besoins des organisations d\'aujourd\'hui.',
+    slug: 'pourquoi-le-vote-electronique',
+    image: '/images/blog-vote-electronique.png',
+  },
+];
+---
+
+<BaseLayout title="Blogue | Votez.com" description="Articles et ressources sur le vote électronique">
+  <section class="blog-hero">
+    <div class="blog-hero-inner">
+      <h1 class="blog-hero-title">Blogue</h1>
+      <p class="blog-hero-subtitle">Articles et ressources sur le vote électronique</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="articles-grid">
+        {articles.map((article) => (
+          <a href={`/blogue/${article.slug}`} class="article-card">
+            <div class="article-card-image">
+              <img src={article.image} alt={article.title} loading="lazy" />
+            </div>
+            <div class="article-card-body">
+              <div class="article-card-meta">
+                <time>{article.date}</time>
+                <span>{article.readTime}</span>
+              </div>
+              <h2 class="article-card-title">{article.title}</h2>
+              <p class="article-card-excerpt">{article.excerpt}</p>
+              <span class="article-card-link">Lire l'article &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+    color: #fff;
+    padding: 5rem 2rem 4rem;
+  }
+
+  .blog-hero-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .blog-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .blog-hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0.5rem;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .article-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all var(--transition);
+    color: inherit;
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-primary);
+  }
+
+  .article-card-image {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: var(--color-primary-light);
+  }
+
+  .article-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .article-card-body {
+    padding: 1.5rem;
+  }
+
+  .article-card-meta {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-card-excerpt {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .article-card-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero {
+      padding: 3.5rem 1.25rem 3rem;
+    }
+
+    .blog-hero-title {
+      font-size: 2rem;
+    }
+
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

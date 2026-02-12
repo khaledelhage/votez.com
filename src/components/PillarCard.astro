@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const { title, description, icon } = Astro.props;
+---
+
+<div class="pillar-card">
+  <div class="pillar-icon" set:html={icon} />
+  <h3 class="pillar-title">{title}</h3>
+  <p class="pillar-desc">{description}</p>
+</div>
+
+<style>
+  .pillar-card {
+    text-align: center;
+    padding: 2.5rem 2rem;
+  }
+
+  .pillar-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+  }
+
+  .pillar-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .pillar-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+  }
+</style>
