@@ -80,9 +80,7 @@ const faqs = [
 ];
 
 const iconService = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`;
-
 const iconIntegrite = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>`;
-
 const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`;
 ---
 
@@ -90,13 +88,16 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   <Hero />
 
   <!-- À propos -->
-  <section class="section about">
+  <section class="section">
     <div class="section-inner about-grid">
       <div class="about-content">
         <p class="section-label">À propos</p>
-        <h2 class="section-title">Votez.com est une solution de vote électronique développée par Neosapiens</h2>
+        <h2 class="section-title">Une solution de vote électronique développée par Neosapiens</h2>
         <p class="about-text">
-          Neosapiens oeuvre dans le domaine du développement de systèmes d'information essentiels pour la mission syndicale depuis 2002. Votez.com est une plateforme de vote électronique conçue pour offrir une solution complète et sécurisée aux organisations souhaitant moderniser et optimiser leurs processus électoraux. Notre service facilite la gestion de scrutins variés, de la création de campagnes personnalisées à l'annonce des résultats, en passant par une gestion rigoureuse de la communication avec les votants. Nous nous engageons à assurer l'intégrité, la transparence, et la facilité d'utilisation pour chaque campagne de vote.
+          Neosapiens oeuvre dans le domaine du développement de systèmes d'information essentiels pour la mission syndicale depuis 2002. Votez.com est une plateforme de vote électronique conçue pour offrir une solution complète et sécurisée aux organisations souhaitant moderniser et optimiser leurs processus électoraux.
+        </p>
+        <p class="about-text">
+          Notre service facilite la gestion de scrutins variés, de la création de campagnes personnalisées à l'annonce des résultats, en passant par une gestion rigoureuse de la communication avec les votants.
         </p>
       </div>
       <div class="about-stats">
@@ -112,21 +113,11 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     </div>
   </section>
 
-  <!-- CTA 1 -->
-  <section class="section cta-banner">
-    <div class="section-inner cta-banner-inner">
-      <p class="cta-banner-text">
-        Découvrez comment Votez.com peut vous aider à organiser des élections sécurisées et efficaces. Demandez une démonstration dès aujourd'hui pour explorer toutes nos fonctionnalités.
-      </p>
-      <a href="#contact" class="btn btn-primary">Demander une démonstration</a>
-    </div>
-  </section>
-
   <!-- Services -->
-  <section class="section" id="services">
+  <section class="section section-alt" id="services">
     <div class="section-inner">
-      <p class="section-label">Nous vous accompagnons du début à la fin</p>
-      <h2 class="section-title">Services et fonctionnalités</h2>
+      <p class="section-label">Nos services</p>
+      <h2 class="section-title">Nous vous accompagnons du début à la fin</h2>
       <p class="section-subtitle">
         Notre équipe s'occupe de tout : le site de votation, la génération des codes d'accès, la communication avec les votant·e·s, les rappels et la communication des résultats.
       </p>
@@ -143,11 +134,11 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   </section>
 
   <!-- Mission -->
-  <section class="section mission" id="mission">
+  <section class="section" id="mission">
     <div class="section-inner mission-grid">
       <div class="mission-content">
         <p class="section-label">Notre engagement</p>
-        <h2 class="section-title">Notre mission : faciliter l'exercice de la démocratie dans votre organisation</h2>
+        <h2 class="section-title">Faciliter l'exercice de la démocratie dans votre organisation</h2>
         <p class="mission-text">
           Votez.com est conçue pour garantir que chaque vote est traité avec le plus haut niveau de précision et de confidentialité. Nous appliquons des protocoles de sécurité stricts pour protéger l'intégrité de chaque élection, offrant ainsi une plateforme sur laquelle les organisations peuvent compter pour mener leurs élections en toute confiance.
         </p>
@@ -161,32 +152,33 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     </div>
   </section>
 
-  <!-- CTA 2 -->
-  <section class="section cta-vote">
-    <div class="section-inner cta-vote-inner">
-      <h2 class="cta-vote-title">Vous planifiez une campagne de vote prochainement?</h2>
-      <p class="cta-vote-text">Faites-nous part de vos besoins, nous nous occupons du reste.</p>
-      <a href="#contact" class="btn btn-outline">Contactez-nous</a>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-title">Vous planifiez une campagne de vote?</h2>
+      <p class="cta-text">Faites-nous part de vos besoins, nous nous occupons du reste.</p>
+      <a href="#contact" class="btn btn-primary">Contactez-nous</a>
     </div>
   </section>
 
   <!-- 3 Piliers -->
   <section class="section pillars">
     <div class="section-inner">
+      <p class="pillars-label">Pourquoi Votez.com</p>
       <div class="pillars-grid">
         <PillarCard
           title="Service complet et personnalisé"
-          description="Nous proposons un accompagnement complet et un service tout-en-un. De l'initialisation de votre plateforme de vote à la présentation des résultats, chaque phase est gérée avec la plus grande attention par notre équipe."
+          description="De l'initialisation de votre plateforme de vote à la présentation des résultats, chaque phase est gérée avec la plus grande attention par notre équipe."
           icon={iconService}
         />
         <PillarCard
           title="Intégrité et sécurité"
-          description="Votez.com s'engage à fournir un environnement de vote sécurisé en appliquant des protocoles d'authentification avancés et en respectant une confidentialité rigoureuse. L'infrastructure est hébergée exclusivement au Québec."
+          description="Protocoles d'authentification avancés et confidentialité rigoureuse. L'infrastructure est hébergée exclusivement au Québec pour une conformité optimale."
           icon={iconIntegrite}
         />
         <PillarCard
-          title="Expérience utilisateur moderne et simple"
-          description="Votez.com est disponible sur tout type d'appareil, de l'ordinateur au téléphone intelligent en passant par les tablettes. L'expérience de vote est simple et épurée."
+          title="Expérience moderne et simple"
+          description="Disponible sur tout type d'appareil. L'expérience de vote est simple et épurée, les votants n'auront aucune difficulté à enregistrer leur vote."
           icon={iconUx}
         />
       </div>
@@ -194,10 +186,10 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   </section>
 
   <!-- CTA final -->
-  <section class="section cta-final">
-    <div class="section-inner cta-final-inner">
+  <section class="section">
+    <div class="section-inner cta-final">
       <p class="cta-final-badge">Fièrement réalisé à Québec</p>
-      <h2 class="cta-final-title">Prêt à moderniser vos élections?</h2>
+      <h2 class="section-title cta-final-title">Prêt à moderniser vos élections?</h2>
       <p class="cta-final-text">
         Découvrez comment Votez.com peut vous aider à organiser des élections sécurisées et efficaces. Demandez une démonstration dès aujourd'hui pour explorer toutes nos fonctionnalités.
       </p>
@@ -206,7 +198,7 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   </section>
 
   <!-- FAQ -->
-  <section class="section" id="faq">
+  <section class="section section-alt" id="faq">
     <div class="section-inner faq-section">
       <p class="section-label">Questions fréquentes</p>
       <h2 class="section-title">FAQ</h2>
@@ -224,165 +216,148 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   .about-grid {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 4rem;
+    gap: 5rem;
     align-items: start;
   }
 
   .about-text {
     color: var(--color-text-light);
-    line-height: 1.8;
-    font-size: 1.05rem;
+    line-height: 1.7;
+    font-size: 1.0625rem;
+    margin-bottom: 0.75rem;
   }
 
   .about-stats {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding-top: 1rem;
+    gap: 1.5rem;
+    padding-top: 3rem;
   }
 
   .stat {
     text-align: center;
-    padding: 1.5rem 2rem;
-    background: var(--color-primary-light);
-    border-radius: var(--radius);
+    padding: 1.75rem 2.5rem;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
   }
 
   .stat-number {
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
     line-height: 1.1;
   }
 
   .stat-label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--color-text-light);
     margin-top: 0.25rem;
-  }
-
-  /* CTA Banner */
-  .cta-banner {
-    background-color: var(--color-primary-light);
-    padding: 3rem 2rem;
-  }
-
-  .cta-banner-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  .cta-banner-text {
-    font-size: 1.05rem;
-    color: var(--color-text);
-    max-width: 38rem;
-    line-height: 1.7;
   }
 
   /* Services */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-top: 3rem;
   }
 
   /* Mission */
-  .mission {
-    background-color: var(--color-surface);
-  }
-
   .mission-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: center;
   }
 
   .mission-text {
     color: var(--color-text-light);
-    line-height: 1.8;
-    font-size: 1.05rem;
-    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.0625rem;
+    margin-bottom: 0.75rem;
   }
 
   .mission-image {
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     overflow: hidden;
   }
 
-  /* CTA Vote */
-  .cta-vote {
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-    color: #fff;
+  /* CTA section */
+  .cta-section {
+    background-color: var(--color-cta-light);
+    padding: 4rem 2rem;
     text-align: center;
-    padding: 5rem 2rem;
   }
 
-  .cta-vote-inner {
-    max-width: 36rem;
+  .cta-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
   }
 
-  .cta-vote-title {
-    font-size: 2rem;
+  .cta-title {
+    font-size: 1.75rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
   }
 
-  .cta-vote-text {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 2rem;
+  .cta-text {
+    font-size: 1.0625rem;
+    color: var(--color-text-light);
+    margin-bottom: 1.75rem;
   }
 
   /* Piliers */
   .pillars {
-    background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
+    background-color: var(--color-navy);
     color: #fff;
+  }
+
+  .pillars-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   /* CTA Final */
   .cta-final {
     text-align: center;
-    padding: 5rem 2rem;
-  }
-
-  .cta-final-inner {
     max-width: 36rem;
+    padding: 2rem 0;
   }
 
   .cta-final-badge {
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--color-primary-dark);
-    background: var(--color-primary-light);
+    color: var(--color-cta);
+    background: var(--color-cta-light);
     padding: 0.375rem 1rem;
     border-radius: 2rem;
     margin-bottom: 1.5rem;
   }
 
   .cta-final-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: var(--color-accent);
     margin-bottom: 1rem;
   }
 
   .cta-final-text {
-    font-size: 1.05rem;
+    font-size: 1.0625rem;
     color: var(--color-text-light);
     line-height: 1.7;
     margin-bottom: 2rem;
@@ -406,19 +381,21 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 
     .about-stats {
       flex-direction: row;
+      padding-top: 0;
     }
 
     .stat {
       flex: 1;
+      padding: 1.25rem 1rem;
     }
 
-    .cta-banner-inner {
-      flex-direction: column;
-      text-align: center;
+    .stat-number {
+      font-size: 2rem;
     }
 
     .services-grid {
       grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
     .mission-grid {
@@ -430,12 +407,12 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
       grid-template-columns: 1fr;
     }
 
-    .cta-vote-title {
+    .cta-title {
       font-size: 1.5rem;
     }
 
-    .cta-final-title {
-      font-size: 1.75rem;
+    .cta-section {
+      padding: 3rem 1.25rem;
     }
   }
 

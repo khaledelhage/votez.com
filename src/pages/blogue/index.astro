@@ -24,8 +24,9 @@ const articles = [
 <BaseLayout title="Blogue | Votez.com" description="Articles et ressources sur le vote électronique">
   <section class="blog-hero">
     <div class="blog-hero-inner">
-      <h1 class="blog-hero-title">Blogue</h1>
-      <p class="blog-hero-subtitle">Articles et ressources sur le vote électronique</p>
+      <p class="blog-hero-label">Blogue</p>
+      <h1 class="blog-hero-title">Articles et ressources</h1>
+      <p class="blog-hero-subtitle">Réflexions sur le vote électronique et la démocratie en milieu organisationnel</p>
     </div>
   </section>
 
@@ -40,11 +41,12 @@ const articles = [
             <div class="article-card-body">
               <div class="article-card-meta">
                 <time>{article.date}</time>
+                <span class="meta-sep">·</span>
                 <span>{article.readTime}</span>
               </div>
               <h2 class="article-card-title">{article.title}</h2>
               <p class="article-card-excerpt">{article.excerpt}</p>
-              <span class="article-card-link">Lire l'article &rarr;</span>
+              <span class="article-card-link">Lire l'article <span aria-hidden="true">&rarr;</span></span>
             </div>
           </a>
         ))}
@@ -55,9 +57,9 @@ const articles = [
 
 <style>
   .blog-hero {
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+    background-color: var(--color-navy);
     color: #fff;
-    padding: 5rem 2rem 4rem;
+    padding: 5rem 2rem 4.5rem;
   }
 
   .blog-hero-inner {
@@ -65,42 +67,51 @@ const articles = [
     margin: 0 auto;
   }
 
+  .blog-hero-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 1rem;
+  }
+
   .blog-hero-title {
-    font-size: 3rem;
+    font-size: 2.75rem;
     font-weight: 700;
+    color: #fff;
   }
 
   .blog-hero-subtitle {
-    font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 0.5rem;
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.75rem;
   }
 
   .articles-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .article-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: all var(--transition);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
     color: inherit;
   }
 
   .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
   }
 
   .article-card-image {
     aspect-ratio: 16/10;
     overflow: hidden;
-    background: var(--color-primary-light);
+    background: var(--color-bg-alt);
   }
 
   .article-card-image img {
@@ -117,23 +128,27 @@ const articles = [
     font-size: 0.8rem;
     color: var(--color-text-light);
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-bottom: 0.75rem;
   }
 
+  .meta-sep {
+    color: var(--color-border);
+  }
+
   .article-card-title {
-    font-size: 1.25rem;
+    font-size: 1.1875rem;
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-primary);
     line-height: 1.35;
     margin-bottom: 0.75rem;
   }
 
   .article-card-excerpt {
-    font-size: 0.9rem;
+    font-size: 0.9375rem;
     color: var(--color-text-light);
     line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -141,9 +156,9 @@ const articles = [
   }
 
   .article-card-link {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-primary-dark);
+    color: var(--color-cta);
   }
 
   @media (max-width: 768px) {

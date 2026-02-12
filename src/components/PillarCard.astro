@@ -16,18 +16,20 @@ const { title, description, icon } = Astro.props;
 
 <style>
   .pillar-card {
-    text-align: center;
     padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .pillar-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    margin: 0 auto 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-primary);
+    color: rgba(255, 255, 255, 0.8);
   }
 
   .pillar-icon :global(svg) {
@@ -36,15 +38,15 @@ const { title, description, icon } = Astro.props;
   }
 
   .pillar-title {
-    font-size: 1.2rem;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .pillar-desc {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.7;
   }
 </style>

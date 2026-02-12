@@ -16,8 +16,10 @@ const { title, description, date, readTime, image } = Astro.props;
   <article class="blog-article">
     <div class="article-inner">
       <header class="article-header">
-        {date && <time class="article-date">{date}</time>}
-        {readTime && <span class="article-read-time">{readTime}</span>}
+        <div class="article-meta">
+          {date && <time class="article-date">{date}</time>}
+          {readTime && <><span class="meta-sep">·</span><span class="article-read-time">{readTime}</span></>}
+        </div>
         <h1 class="article-title">{title}</h1>
       </header>
       {image && (
@@ -29,7 +31,7 @@ const { title, description, date, readTime, image } = Astro.props;
         <slot />
       </div>
       <footer class="article-footer">
-        <a href="/blogue" class="back-link">&larr; Retour au blogue</a>
+        <a href="/blogue" class="back-link"><span aria-hidden="true">&larr;</span> Retour au blogue</a>
       </footer>
     </div>
   </article>
@@ -37,7 +39,7 @@ const { title, description, date, readTime, image } = Astro.props;
 
 <style>
   .blog-article {
-    padding: 3rem 2rem 5rem;
+    padding: 3.5rem 2rem 6rem;
   }
 
   .article-inner {
@@ -46,44 +48,38 @@ const { title, description, date, readTime, image } = Astro.props;
   }
 
   .article-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
-  .article-date {
+  .article-meta {
+    display: flex;
+    gap: 0.5rem;
     font-size: 0.875rem;
     color: var(--color-text-light);
-    text-transform: capitalize;
+    margin-bottom: 1rem;
   }
 
-  .article-read-time {
-    font-size: 0.875rem;
-    color: var(--color-text-light);
-    margin-left: 1rem;
-  }
-
-  .article-read-time::before {
-    content: '·';
-    margin-right: 1rem;
+  .meta-sep {
+    color: var(--color-border);
   }
 
   .article-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--color-accent);
-    margin-top: 0.75rem;
-    line-height: 1.2;
+    color: var(--color-primary);
+    line-height: 1.15;
   }
 
   .article-hero {
     margin-bottom: 2.5rem;
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     overflow: hidden;
   }
 
   .article-content :global(h2) {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-primary);
     margin-top: 2.5rem;
     margin-bottom: 1rem;
   }
@@ -91,7 +87,7 @@ const { title, description, date, readTime, image } = Astro.props;
   .article-content :global(h3) {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-primary);
     margin-top: 2rem;
     margin-bottom: 0.75rem;
   }
@@ -99,7 +95,8 @@ const { title, description, date, readTime, image } = Astro.props;
   .article-content :global(p) {
     margin-bottom: 1.25rem;
     color: var(--color-text);
-    line-height: 1.8;
+    line-height: 1.75;
+    font-size: 1.0625rem;
   }
 
   .article-content :global(ul),
@@ -120,21 +117,26 @@ const { title, description, date, readTime, image } = Astro.props;
   }
 
   .back-link {
+    font-size: 0.9375rem;
     font-weight: 500;
-    color: var(--color-primary-dark);
+    color: var(--color-cta);
   }
 
   .back-link:hover {
-    color: var(--color-primary);
+    color: var(--color-cta-hover);
   }
 
   @media (max-width: 768px) {
     .blog-article {
-      padding: 2rem 1.25rem 3rem;
+      padding: 2.5rem 1.25rem 4rem;
     }
 
     .article-title {
-      font-size: 1.75rem;
+      font-size: 1.875rem;
+    }
+
+    .article-content :global(p) {
+      font-size: 1rem;
     }
   }
 </style>

@@ -20,24 +20,23 @@ const { title, description, image } = Astro.props;
   .service-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    padding: 1.75rem;
-    transition: all var(--transition);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
   .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
   }
 
   .service-image {
     width: 100%;
     aspect-ratio: 4/3;
-    border-radius: calc(var(--radius) - 4px);
+    border-radius: var(--radius);
     overflow: hidden;
     margin-bottom: 1.25rem;
-    background-color: var(--color-primary-light);
+    background-color: var(--color-bg-alt);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,14 +49,14 @@ const { title, description, image } = Astro.props;
   }
 
   .service-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--color-accent);
-    margin-bottom: 0.75rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
   }
 
   .service-desc {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--color-text-light);
     line-height: 1.6;
   }
