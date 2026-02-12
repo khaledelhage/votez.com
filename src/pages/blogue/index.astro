@@ -23,12 +23,19 @@ const articles = [
 
 <BaseLayout title="Blogue | Votez.com" description="Articles et ressources sur le vote électronique">
   <section class="blog-hero">
+    <div class="blog-hero-blob blog-hero-blob-1"></div>
     <div class="blog-hero-inner">
       <p class="blog-hero-label">Blogue</p>
       <h1 class="blog-hero-title">Articles et ressources</h1>
       <p class="blog-hero-subtitle">Réflexions sur le vote électronique et la démocratie en milieu organisationnel</p>
     </div>
   </section>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,60 C200,20 400,50 600,30 C800,10 1000,45 1200,25 L1200,0 L0,0 Z" fill="var(--color-dark)"/>
+    </svg>
+  </div>
 
   <section class="section">
     <div class="section-inner">
@@ -57,35 +64,73 @@ const articles = [
 
 <style>
   .blog-hero {
-    background-color: var(--color-navy);
+    background: linear-gradient(170deg, var(--color-dark) 0%, #2D3D2D 60%, #3A4F3A 100%);
     color: #fff;
     padding: 5rem 2rem 4.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-hero-blob {
+    position: absolute;
+    z-index: 0;
+  }
+
+  .blog-hero-blob-1 {
+    top: -20%;
+    right: -10%;
+    width: 40vw;
+    height: 40vw;
+    background: rgba(224, 123, 95, 0.06);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: blobMorph 12s ease-in-out infinite;
+  }
+
+  @keyframes blobMorph {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    33% { border-radius: 40% 60% 70% 30% / 30% 60% 40% 70%; }
+    66% { border-radius: 30% 70% 40% 60% / 60% 40% 70% 30%; }
   }
 
   .blog-hero-inner {
     max-width: var(--max-width);
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   .blog-hero-label {
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.3);
     margin-bottom: 1rem;
+    font-family: var(--font-body);
   }
 
   .blog-hero-title {
     font-size: 2.75rem;
-    font-weight: 700;
     color: #fff;
   }
 
   .blog-hero-subtitle {
     font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     margin-top: 0.75rem;
+  }
+
+  .wave-divider {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -1px;
+  }
+
+  .wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 60px;
   }
 
   .articles-grid {
@@ -99,13 +144,21 @@ const articles = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform var(--transition), box-shadow var(--transition-soft);
     color: inherit;
   }
 
+  .article-card:nth-child(odd) {
+    transform: rotate(-0.3deg);
+  }
+
+  .article-card:nth-child(even) {
+    transform: rotate(0.3deg);
+  }
+
   .article-card:hover {
+    transform: rotate(0deg) translateY(-4px);
     box-shadow: var(--shadow-lg);
-    border-color: transparent;
   }
 
   .article-card-image {
@@ -138,7 +191,6 @@ const articles = [
 
   .article-card-title {
     font-size: 1.1875rem;
-    font-weight: 600;
     color: var(--color-primary);
     line-height: 1.35;
     margin-bottom: 0.75rem;
@@ -157,8 +209,8 @@ const articles = [
 
   .article-card-link {
     font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-cta);
+    font-weight: 700;
+    color: var(--color-accent);
   }
 
   @media (max-width: 768px) {
@@ -170,8 +222,17 @@ const articles = [
       font-size: 2rem;
     }
 
+    .wave-divider svg {
+      height: 30px;
+    }
+
     .articles-grid {
       grid-template-columns: 1fr;
+    }
+
+    .article-card:nth-child(odd),
+    .article-card:nth-child(even) {
+      transform: none;
     }
   }
 </style>
