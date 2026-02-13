@@ -34,41 +34,44 @@
     <textarea id="message" name="message" rows="4"></textarea>
   </div>
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="moment-date">Date souhaitée <span class="required">*</span></label>
-      <input type="date" id="moment-date" name="moment-date" required />
+  <fieldset class="form-fieldset">
+    <legend class="form-fieldset-legend">Meilleur moment pour vous joindre</legend>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="moment-date">Date préférée</label>
+        <input type="date" id="moment-date" name="moment-date" />
+      </div>
+      <div class="form-group">
+        <label for="moment-heure">Heure préférée</label>
+        <select id="moment-heure" name="moment-heure">
+          <option value="" disabled selected>Choisir un créneau</option>
+          <option value="08:00">08:00</option>
+          <option value="08:30">08:30</option>
+          <option value="09:00">09:00</option>
+          <option value="09:30">09:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="14:00">14:00</option>
+          <option value="14:30">14:30</option>
+          <option value="15:00">15:00</option>
+          <option value="15:30">15:30</option>
+          <option value="16:00">16:00</option>
+          <option value="16:30">16:30</option>
+          <option value="17:00">17:00</option>
+          <option value="17:30">17:30</option>
+        </select>
+        <span class="form-hint">Lun. au ven., heure de l'Est</span>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="moment-heure">Heure souhaitée <span class="required">*</span></label>
-      <select id="moment-heure" name="moment-heure" required>
-        <option value="" disabled selected>Choisir un créneau</option>
-        <option value="08:00">08:00</option>
-        <option value="08:30">08:30</option>
-        <option value="09:00">09:00</option>
-        <option value="09:30">09:30</option>
-        <option value="10:00">10:00</option>
-        <option value="10:30">10:30</option>
-        <option value="11:00">11:00</option>
-        <option value="11:30">11:30</option>
-        <option value="12:00">12:00</option>
-        <option value="12:30">12:30</option>
-        <option value="13:00">13:00</option>
-        <option value="13:30">13:30</option>
-        <option value="14:00">14:00</option>
-        <option value="14:30">14:30</option>
-        <option value="15:00">15:00</option>
-        <option value="15:30">15:30</option>
-        <option value="16:00">16:00</option>
-        <option value="16:30">16:30</option>
-        <option value="17:00">17:00</option>
-        <option value="17:30">17:30</option>
-      </select>
-      <span class="form-hint">Lun. au ven., heure de l'Est</span>
-    </div>
-  </div>
+  </fieldset>
 
-  <button type="submit" class="btn btn-primary form-submit">Envoyer le message</button>
+  <button type="submit" class="btn btn-primary form-submit">Envoyer</button>
 
   <div id="form-status" class="form-status" hidden></div>
 </form>
@@ -96,7 +99,7 @@
     delete data['moment-date'];
     delete data['moment-heure'];
 
-    if (!data.organisation || !data.email || !data.moment) {
+    if (!data.organisation || !data.email) {
       status.hidden = false;
       status.className = 'form-status form-status-error';
       status.textContent = 'Veuillez remplir tous les champs obligatoires.';
@@ -131,7 +134,7 @@
       status.textContent = 'Erreur de connexion. Veuillez réessayer.';
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Envoyer le message';
+      submitBtn.textContent = 'Envoyer';
     }
   });
 </script>
@@ -199,6 +202,20 @@
   .form-group textarea {
     resize: vertical;
     min-height: 6rem;
+  }
+
+  .form-fieldset {
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius);
+    margin: 0;
+    padding: 1.25rem;
+  }
+
+  .form-fieldset-legend {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    padding: 0 0.5rem;
   }
 
   .form-hint {

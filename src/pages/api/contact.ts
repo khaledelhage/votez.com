@@ -18,7 +18,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const { prenom, nom, organisation, telephone, email, message, moment } = data;
 
-  if (!organisation || !email || !moment) {
+  if (!organisation || !email) {
     return new Response(
       JSON.stringify({ error: 'Veuillez remplir tous les champs obligatoires.' }),
       { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -37,7 +37,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   };
 
-  const momentFormate = formatMoment(moment);
+  const momentFormate = moment ? formatMoment(moment) : null;
 
   const htmlBody = `
     <h2>Nouveau message depuis votez.com</h2>
@@ -48,7 +48,7 @@ export const POST: APIRoute = async ({ request }) => {
       <tr><td style="padding:8px 16px 8px 0;font-weight:bold;vertical-align:top;">Téléphone</td><td style="padding:8px 0;">${telephone || '—'}</td></tr>
       <tr><td style="padding:8px 16px 8px 0;font-weight:bold;vertical-align:top;">Courriel</td><td style="padding:8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
       <tr><td style="padding:8px 16px 8px 0;font-weight:bold;vertical-align:top;">Besoins ou questions</td><td style="padding:8px 0;">${message || '—'}</td></tr>
-      <tr><td style="padding:8px 16px 8px 0;font-weight:bold;vertical-align:top;">Moment souhaité</td><td style="padding:8px 0;">${momentFormate}</td></tr>
+      <tr><td style="padding:8px 16px 8px 0;font-weight:bold;vertical-align:top;">Moment souhaité</td><td style="padding:8px 0;">${momentFormate || '—'}</td></tr>
     </table>
   `;
 
@@ -61,7 +61,7 @@ export const POST: APIRoute = async ({ request }) => {
     `Téléphone : ${telephone || '—'}`,
     `Courriel : ${email}`,
     `Besoins ou questions : ${message || '—'}`,
-    `Moment souhaité : ${momentFormate}`,
+    `Moment souhaité : ${momentFormate || '—'}`,
   ].join('\n');
 
   try {
