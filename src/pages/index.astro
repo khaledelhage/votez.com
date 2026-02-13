@@ -173,10 +173,18 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     </div>
   </section>
 
+  <!-- Québec parallax -->
+  <section class="quebec-section" style="background-image: url('/images/quebec.jpg');">
+    <div class="quebec-overlay"></div>
+    <div class="quebec-inner">
+      <h2 class="quebec-title">Votez.com est fièrement<br />réalisé à <span class="quebec-accent">Québec</span></h2>
+      <div class="quebec-line"></div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section">
     <div class="cta-inner">
-      <span class="cta-badge">Fièrement réalisé à Québec</span>
       <h2 class="cta-title">Vous planifiez une campagne de vote?</h2>
       <p class="cta-text">Découvrez comment Votez.com peut simplifier et sécuriser vos élections.</p>
       <a href="#contact" class="btn btn-primary btn-lg">Demander une démonstration</a>
@@ -285,6 +293,51 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     gap: 1.5rem;
   }
 
+  /* Québec parallax */
+  .quebec-section {
+    position: relative;
+    height: 70vh;
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quebec-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 30, 40, 0.45);
+    z-index: 1;
+  }
+
+  .quebec-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .quebec-title {
+    font-size: 2.75rem;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-shadow: none;
+  }
+
+  .quebec-accent {
+    color: #003DA5;
+  }
+
+  .quebec-line {
+    width: 5rem;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 1.5rem auto 0;
+  }
+
   /* CTA */
   .cta-section {
     background: linear-gradient(170deg, var(--color-dark) 0%, var(--color-dark-lighter) 60%, #2D3D4F 100%);
@@ -317,16 +370,6 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
     margin: 0 auto;
     position: relative;
     z-index: 1;
-  }
-
-  .cta-badge {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.3);
-    margin-bottom: 1.5rem;
   }
 
   .cta-title {
@@ -446,6 +489,16 @@ const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 
     .pillars-grid {
       grid-template-columns: 1fr;
+    }
+
+    .quebec-section {
+      height: 50vh;
+      min-height: 300px;
+      background-attachment: scroll;
+    }
+
+    .quebec-title {
+      font-size: 1.75rem;
     }
 
     .cta-section {
