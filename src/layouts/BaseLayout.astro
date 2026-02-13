@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title: string;
@@ -56,7 +57,7 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
           <div class="footer-col">
             <h4 class="footer-heading">Contact</h4>
             <ul class="footer-list">
-              <li>1-866-873-1591</li>
+              <li>1-866-968-0961</li>
               <li><a href="mailto:info@votez.com">info@votez.com</a></li>
               <li>1305 rue du Blizzard #105</li>
               <li>Québec (Québec) G2K 0A1</li>
@@ -79,9 +80,12 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
         </div>
         <div class="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Neosapiens. Tous droits réservés.</p>
+          <a href="/confidentialite" class="footer-privacy-link">Politique de confidentialité</a>
         </div>
       </div>
     </footer>
+
+    <CookieConsent />
 
     <script>
       const toggle = document.querySelector('.nav-toggle');
@@ -259,6 +263,17 @@ const { title, description = 'Votez.com - Plateforme de vote électronique sécu
     text-align: center;
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.35);
+  }
+
+  .footer-privacy-link {
+    color: rgba(255, 255, 255, 0.35);
+    transition: color var(--transition-soft);
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+
+  .footer-privacy-link:hover {
+    color: rgba(255, 255, 255, 0.7);
   }
 
   @media (max-width: 768px) {
