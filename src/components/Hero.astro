@@ -5,8 +5,8 @@
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
   <div class="hero-inner">
-    <p class="hero-label">Votez.com</p>
-    <h1 class="hero-title">La démocratie<br />dans votre organisation</h1>
+    <p class="hero-wordmark">Votez.com</p>
+    <p class="hero-tagline">La démocratie dans votre organisation</p>
     <p class="hero-subtitle">
       Une plateforme de vote électronique sécurisée, développée par Neosapiens.
       De la création de votre campagne à l'annonce des résultats, nous nous occupons de tout.
@@ -86,22 +86,22 @@
     z-index: 1;
   }
 
-  .hero-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: rgba(255, 255, 255, 0.3);
-    margin-bottom: 2rem;
-    font-family: var(--font-body);
+  .hero-wordmark {
+    font-size: 3.75rem;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 1rem;
   }
 
-  .hero-title {
-    font-size: 3.75rem;
+  .hero-tagline {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: var(--font-heading);
     font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    color: #fff;
+    letter-spacing: -0.01em;
     margin-bottom: 1.75rem;
   }
 
@@ -158,8 +158,12 @@
       padding: 5rem 1.25rem 4rem;
     }
 
-    .hero-title {
+    .hero-wordmark {
       font-size: 2.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.25rem;
     }
 
     .hero-subtitle {
