@@ -2,6 +2,13 @@
 ---
 
 <form id="contact-form" class="contact-form" novalidate>
+  <!-- Honeypot anti-spam -->
+  <div class="form-group-hp" aria-hidden="true">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="_loaded" id="_loaded" value="" />
+
   <div class="form-row">
     <div class="form-group">
       <label for="prenom">Prénom</label>
@@ -80,6 +87,8 @@
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const status = document.getElementById('form-status') as HTMLDivElement;
   const submitBtn = form.querySelector('.form-submit') as HTMLButtonElement;
+  const loadedField = document.getElementById('_loaded') as HTMLInputElement;
+  loadedField.value = Date.now().toString();
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -140,6 +149,17 @@
 </script>
 
 <style>
+  .form-group-hp {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
   .contact-form {
     display: flex;
     flex-direction: column;

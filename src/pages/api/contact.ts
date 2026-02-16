@@ -16,6 +16,23 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
+  // Anti-spam : honeypot
+  if (data.website) {
+    return new Response(
+      JSON.stringify({ success: true }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
+  // Anti-spam : délai minimum (3 secondes)
+  const loaded = parseInt(data._loaded || '0', 10);
+  if (!loaded || Date.now() - loaded < 3000) {
+    return new Response(
+      JSON.stringify({ success: true }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
   const { prenom, nom, organisation, telephone, email, message, moment } = data;
 
   if (!organisation || !email) {
