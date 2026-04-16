@@ -54,7 +54,7 @@ const mapping = [
   { exigence: 'Vote sur proposition (grève, convention, cotisation)', reponse: 'Type de question « Proposition » avec choix Pour et Contre prérempli' },
   { exigence: 'Élection des officiers', reponse: 'Type de question « Élection » avec candidats, photos, programmes, pages individuelles' },
   { exigence: 'Vote annuel récurrent sur cotisation facultative', reponse: 'Duplication de campagnes pour réutiliser la configuration existante d\'une année à l\'autre' },
-  { exigence: 'Poids de vote pour les délégués', reponse: 'Vote pondéré natif avec instantané immuable au moment du vote' },
+  { exigence: 'Poids de vote pour les délégués', reponse: 'Vote pondéré natif pour les délégués, poids verrouillé au moment du vote pour empêcher toute modification rétroactive' },
   { exigence: 'Préavis à chaque membre', reponse: 'Envoi massif d\'invitations par courriel, rappels ciblés automatiques' },
   { exigence: 'Traçabilité et archivage', reponse: 'Trace de vote sans lien avec l\'identité, export Excel, rapport certifié PDF' },
   { exigence: 'Vérifiabilité du résultat', reponse: 'Preuve à divulgation nulle de connaissance, décompte reproductible par n\'importe qui' },
@@ -97,10 +97,6 @@ const faqsPL3 = [
   {
     question: 'Comment Votez.com garantit-il que le scrutin est réellement secret?',
     answer: 'La plateforme utilise une architecture à double agrégat. L\'identité du votant et le contenu du vote sont stockés dans deux structures de données distinctes qui n\'ont aucun lien entre elles dans la base de données. Cette séparation est imposée par le schéma, pas par politique. Il est techniquement impossible de relier un vote à un votant.',
-  },
-  {
-    question: 'Peut-on tenir une assemblée en personne tout en respectant la fenêtre de 24 heures?',
-    answer: 'Oui, le mode hybride de Votez.com le permet. L\'assemblée en personne utilise des tablettes en mode kiosque pour capter les votes présents, pendant que les membres à distance votent par courriel pendant la même fenêtre. Tous les bulletins alimentent le même décompte.',
   },
   {
     question: 'Combien coûte une campagne de vote conforme au PL3?',
