@@ -20,6 +20,11 @@ const {
   publishedTime,
   jsonLd,
 } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/';
+const isPL3 = pathname.startsWith('/projet-de-loi-3');
+const isBlogue = pathname.startsWith('/blogue');
 ---
 
 <!doctype html>
@@ -52,11 +57,12 @@ const {
           <span></span>
         </button>
         <ul class="nav-links">
-          <li><a href="/projet-de-loi-3" class="nav-highlight">Projet de loi 3</a></li>
+          <li><a href="/" class={isHome ? 'active' : ''}>Accueil</a></li>
+          <li><a href="/projet-de-loi-3" class={isPL3 ? 'active' : ''}>Projet de loi 3<span class="nav-badge">Nouveau</span></a></li>
           <li><a href="/#services">Services</a></li>
           <li><a href="/#mission">Mission</a></li>
           <li><a href="/#faq">FAQ</a></li>
-          <li><a href="/blogue">Blogue</a></li>
+          <li><a href="/blogue" class={isBlogue ? 'active' : ''}>Blogue</a></li>
           <li><a href="/#contact" class="nav-cta">Nous contacter</a></li>
         </ul>
       </nav>
@@ -201,12 +207,12 @@ const {
     color: var(--color-accent);
   }
 
-  .nav-highlight {
-    color: var(--color-accent) !important;
+  .nav-links a.active {
+    color: var(--color-accent);
     position: relative;
   }
 
-  .nav-highlight::after {
+  .nav-links a.active::after {
     content: "";
     position: absolute;
     bottom: -4px;
@@ -216,6 +222,21 @@ const {
     background: var(--color-accent);
     border-radius: 2px;
     opacity: 0.5;
+  }
+
+  .nav-badge {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #fff;
+    background: var(--color-accent);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-pill);
+    margin-left: 0.5rem;
+    vertical-align: 0.1em;
+    line-height: 1.4;
   }
 
   .nav-cta {
