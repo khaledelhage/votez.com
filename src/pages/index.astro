@@ -83,9 +83,47 @@ const faqs = [
 const iconService = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`;
 const iconIntegrite = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>`;
 const iconUx = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Votez.com',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description: 'Plateforme de vote électronique sécurisée pour syndicats, associations et organisations au Québec.',
+  url: 'https://votez.com',
+  provider: {
+    '@type': 'Organization',
+    name: 'Neosapiens inc.',
+  },
+  inLanguage: 'fr-CA',
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'CAD',
+    price: '250',
+    description: 'Forfait de base à partir de 250 $ CAD',
+  },
+};
 ---
 
-<BaseLayout title="Votez.com | Plateforme de vote électronique sécurisée">
+<BaseLayout
+  title="Votez.com | Plateforme de vote électronique pour syndicats au Québec"
+  description="Plateforme de vote électronique sécurisée pour syndicats québécois. Scrutins conformes au projet de loi 3, vote de grève, ratification de convention collective, élections d'officiers. Tiers indépendant, anonymat garanti par architecture."
+  jsonLd={[faqSchema, softwareSchema]}
+>
   <Hero />
 
   <!-- À propos -->

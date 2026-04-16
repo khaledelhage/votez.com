@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  jsonLd?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-default.jpg',
+  type = 'website',
+  publishedTime,
+  jsonLd,
+} = Astro.props;
+
+const siteUrl = 'https://votez.com';
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const absoluteImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Neosapiens inc.',
+  alternateName: 'Votez.com',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo_1x.png`,
+  telephone: '+1-866-968-0961',
+  email: 'info@votez.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1305, rue du Blizzard, bureau 105',
+    addressLocality: 'Québec',
+    addressRegion: 'QC',
+    postalCode: 'G2K 0A1',
+    addressCountry: 'CA',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/neosapiens',
+  ],
+};
+
+const allJsonLd = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+allJsonLd.unshift(organization);
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="Votez.com" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={absoluteImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="fr_CA" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteImage} />
+
+{allJsonLd.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

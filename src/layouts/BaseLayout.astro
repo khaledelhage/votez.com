@@ -1,26 +1,44 @@
 ---
 import '../styles/global.css';
 import CookieConsent from '../components/CookieConsent.astro';
+import SEO from '../components/SEO.astro';
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  jsonLd?: Record<string, any> | Record<string, any>[];
 }
 
-const { title, description = 'Votez.com - Plateforme de vote électronique sécurisée' } = Astro.props;
+const {
+  title,
+  description = 'Plateforme de vote électronique sécurisée pour syndicats québécois. Scrutins conformes PL3, vote de grève, ratification de convention collective, élections syndicales.',
+  image,
+  type,
+  publishedTime,
+  jsonLd,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr-CA">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <title>{title}</title>
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      publishedTime={publishedTime}
+      jsonLd={jsonLd}
+    />
   </head>
   <body>
     <header class="header" id="header">

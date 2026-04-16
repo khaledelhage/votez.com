@@ -5,14 +5,49 @@ interface Props {
   title: string;
   description?: string;
   date?: string;
+  publishedTime?: string;
   readTime?: string;
   image?: string;
 }
 
-const { title, description, date, readTime, image } = Astro.props;
+const { title, description, date, publishedTime, readTime, image } = Astro.props;
+
+const siteUrl = 'https://votez.com';
+const absoluteImage = image
+  ? (image.startsWith('http') ? image : `${siteUrl}${image}`)
+  : `${siteUrl}/images/og-default.jpg`;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  image: absoluteImage,
+  ...(publishedTime && { datePublished: publishedTime }),
+  author: {
+    '@type': 'Organization',
+    name: 'Neosapiens inc.',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Neosapiens inc.',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/images/logo_1x.png`,
+    },
+  },
+  inLanguage: 'fr-CA',
+};
 ---
 
-<BaseLayout title={`${title} | Votez.com`} description={description}>
+<BaseLayout
+  title={`${title} | Votez.com`}
+  description={description}
+  image={image}
+  type="article"
+  publishedTime={publishedTime}
+  jsonLd={articleSchema}
+>
   <article class="blog-article">
     <div class="article-inner">
       <header class="article-header">
