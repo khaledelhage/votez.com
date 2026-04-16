@@ -52,6 +52,7 @@ const {
           <span></span>
         </button>
         <ul class="nav-links">
+          <li><a href="/projet-de-loi-3" class="nav-highlight">Projet de loi 3</a></li>
           <li><a href="/#services">Services</a></li>
           <li><a href="/#mission">Mission</a></li>
           <li><a href="/#faq">FAQ</a></li>
@@ -198,6 +199,23 @@ const {
 
   .nav-links a:hover {
     color: var(--color-accent);
+  }
+
+  .nav-highlight {
+    color: var(--color-accent) !important;
+    position: relative;
+  }
+
+  .nav-highlight::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: 2px;
+    opacity: 0.5;
   }
 
   .nav-cta {

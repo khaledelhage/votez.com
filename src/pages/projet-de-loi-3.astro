@@ -1,0 +1,731 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const votesObligatoires = [
+  {
+    title: 'Élection des dirigeants',
+    description: 'Officiers, délégués et toute personne occupant un poste de direction au sein du syndicat doivent être élus par scrutin secret des membres.',
+  },
+  {
+    title: 'Cotisation syndicale principale',
+    description: 'Toute fixation ou modification de la cotisation principale requiert un vote majoritaire des membres, au scrutin secret.',
+  },
+  {
+    title: 'Cotisation facultative',
+    description: 'Nouvelle catégorie imposée par le PL3 pour financer des activités qui ne relèvent pas de la défense des droits prévus par la loi ou la convention collective. Vote obligatoire au moins une fois par année.',
+  },
+  {
+    title: 'Ratification de convention collective',
+    description: 'L\'acceptation ou le rejet d\'une entente de principe proposée par l\'employeur doit être soumis à un vote des membres concernés.',
+  },
+  {
+    title: 'Autorisation de grève',
+    description: 'Le déclenchement d\'une grève légale doit être préalablement autorisé par un scrutin secret des membres de l\'unité visée.',
+  },
+  {
+    title: 'Modification des statuts',
+    description: 'Les statuts et règlements du syndicat doivent être soumis à l\'approbation des membres au moins une fois aux cinq ans.',
+  },
+];
+
+const modalitesScrutin = [
+  {
+    title: 'Scrutin secret',
+    description: 'Le vote à main levée n\'est plus permis pour les objets visés. Chaque membre doit pouvoir exprimer son choix sans que celui-ci ne puisse être associé à son identité.',
+  },
+  {
+    title: 'Durée minimale de 24 heures',
+    description: 'La fenêtre de vote doit rester ouverte au moins 24 heures pour permettre aux membres de tous les quarts de travail de participer.',
+  },
+  {
+    title: 'Préavis de 72 heures',
+    description: 'Un délai minimal de 72 heures doit s\'écouler entre la présentation de la question en assemblée générale et l\'ouverture du scrutin.',
+  },
+  {
+    title: 'Protection contre l\'intimidation',
+    description: 'Sanctions de 5 000 $ à 50 000 $ pour toute personne qui entrave l\'exercice du droit de vote ou exerce une pression sur un votant.',
+  },
+];
+
+const mapping = [
+  { exigence: 'Scrutin réellement secret', reponse: 'Architecture à double agrégat, séparation identité et vote imposée par le schéma de la base de données' },
+  { exigence: 'Fenêtre minimale de 24 heures', reponse: 'Fenêtres de vote programmables avec ouverture et fermeture automatiques' },
+  { exigence: 'Participation de tous les quarts', reponse: 'Vote à distance sur tout appareil, mode kiosque pour assemblées, vote hybride distance et présence' },
+  { exigence: 'Vote sur proposition (grève, convention, cotisation)', reponse: 'Type de question « Proposition » avec choix Pour et Contre prérempli' },
+  { exigence: 'Élection des officiers', reponse: 'Type de question « Élection » avec candidats, photos, programmes, pages individuelles' },
+  { exigence: 'Vote annuel récurrent sur cotisation facultative', reponse: 'Duplication de campagnes pour réutiliser la configuration existante d\'une année à l\'autre' },
+  { exigence: 'Poids de vote pour les délégués', reponse: 'Vote pondéré natif avec instantané immuable au moment du vote' },
+  { exigence: 'Préavis à chaque membre', reponse: 'Envoi massif d\'invitations par courriel, rappels ciblés automatiques' },
+  { exigence: 'Traçabilité et archivage', reponse: 'Trace de vote sans lien avec l\'identité, export Excel, rapport certifié PDF' },
+  { exigence: 'Vérifiabilité du résultat', reponse: 'Preuve à divulgation nulle de connaissance, décompte reproductible par n\'importe qui' },
+  { exigence: 'Indépendance de l\'administration du vote', reponse: 'Gestion clé en main par Neosapiens à titre de tiers indépendant' },
+  { exigence: 'Protection contre l\'intimidation', reponse: 'Codes d\'accès uniques, anonymat technique, limitation par IP, journalisation' },
+];
+
+const avantages = [
+  {
+    title: 'Conformité clé en main',
+    description: 'Votez.com couvre déjà toutes les exigences du PL3 : scrutin secret, fenêtre de 24 heures, préavis, traçabilité, vérifiabilité. Votre syndicat n\'a pas à bâtir ces mécanismes.',
+  },
+  {
+    title: 'Tiers indépendant',
+    description: 'L\'administration du scrutin par Neosapiens répond à une critique classique du vote interne, soit le risque d\'altération par l\'exécutif syndical. Le résultat est hors de portée du demandeur.',
+  },
+  {
+    title: 'Anonymat par architecture',
+    description: 'La séparation identité et vote est imposée par le schéma de la base de données, pas par convention. Impossible techniquement de relier un vote à un votant.',
+  },
+  {
+    title: 'Vote récurrent prévisible',
+    description: 'Le vote annuel sur la cotisation facultative imposé par le PL3 crée un besoin prévisible. Les configurations se dupliquent d\'une année à l\'autre, ce qui réduit l\'effort administratif.',
+  },
+];
+
+const faqsPL3 = [
+  {
+    question: 'Notre syndicat est-il obligatoirement visé par le projet de loi 3?',
+    answer: 'Oui, la loi s\'applique aux syndicats accrédités au Québec, à leurs fédérations et aux centrales syndicales. Les exigences touchent la cotisation, les élections, les votes de grève, la ratification de convention collective et la modification des statuts. Les syndicats sous compétence fédérale peuvent avoir des obligations différentes.',
+  },
+  {
+    question: 'Depuis quand la loi est-elle en vigueur?',
+    answer: 'Le projet de loi 3 a été sanctionné le 2 avril 2026 et est devenu le chapitre 4 des Lois de 2026. Certaines dispositions entrent en vigueur immédiatement, d\'autres progressivement. Les syndicats doivent adapter leurs pratiques de scrutin dès maintenant pour les votes à venir.',
+  },
+  {
+    question: 'Peut-on continuer à tenir les votes à main levée en assemblée générale?',
+    answer: 'Non, le scrutin secret est obligatoire pour les objets visés par la loi. L\'assemblée générale demeure le lieu de présentation de la question et du débat, mais le vote doit être tenu par scrutin secret sur une fenêtre d\'au moins 24 heures.',
+  },
+  {
+    question: 'Comment Votez.com garantit-il que le scrutin est réellement secret?',
+    answer: 'La plateforme utilise une architecture à double agrégat. L\'identité du votant et le contenu du vote sont stockés dans deux structures de données distinctes qui n\'ont aucun lien entre elles dans la base de données. Cette séparation est imposée par le schéma, pas par politique. Il est techniquement impossible de relier un vote à un votant.',
+  },
+  {
+    question: 'Peut-on tenir une assemblée en personne tout en respectant la fenêtre de 24 heures?',
+    answer: 'Oui, le mode hybride de Votez.com le permet. L\'assemblée en personne utilise des tablettes en mode kiosque pour capter les votes présents, pendant que les membres à distance votent par courriel pendant la même fenêtre. Tous les bulletins alimentent le même décompte.',
+  },
+  {
+    question: 'Combien coûte une campagne de vote conforme au PL3?',
+    answer: 'À partir de 250 $ CAD en mode autogéré pour une élection de 250 personnes ou moins. Les tarifs dégressifs s\'appliquent au-delà, jusqu\'à 0,12 $ par jeton pour plus de 10 000 votants. Le mode clé en main, où Neosapiens prend tout en charge, commence à 500 $. Les achats groupés (plusieurs campagnes par année) donnent droit à des rabais de 5 % à 15 %.',
+  },
+];
+
+const faqSchemaPL3 = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqsPL3.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Projet de loi 3 et vote syndical : conformité clé en main | Votez.com"
+  description="Le PL3 rend obligatoires le scrutin secret et la fenêtre de 24 heures pour 6 décisions syndicales. Votez.com couvre chaque exigence de la loi. Plateforme de vote électronique conforme pour syndicats québécois."
+  jsonLd={faqSchemaPL3}
+>
+  <section class="pl3-hero">
+    <div class="pl3-hero-blob pl3-hero-blob-1"></div>
+    <div class="pl3-hero-blob pl3-hero-blob-2"></div>
+    <div class="pl3-hero-inner">
+      <p class="pl3-hero-label">Conformité réglementaire</p>
+      <h1 class="pl3-hero-title">Votre syndicat est prêt pour le projet de loi 3</h1>
+      <p class="pl3-hero-subtitle">
+        Le projet de loi 3 sur la transparence et la gouvernance syndicale a été sanctionné le 2 avril 2026. Il rend le scrutin secret et la fenêtre de 24 heures obligatoires pour six décisions syndicales clés. Votez.com couvre déjà chacune de ces exigences.
+      </p>
+      <div class="pl3-hero-actions">
+        <a href="/#contact" class="btn btn-primary btn-lg">Demander une démonstration</a>
+        <a href="#exigences" class="btn btn-outline btn-lg">Voir les exigences en détail</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,60 C200,20 400,50 600,30 C800,10 1000,45 1200,25 L1200,0 L0,0 Z" fill="var(--color-dark)"/>
+    </svg>
+  </div>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Ce qu'il faut savoir</span>
+        <h2 class="section-title">Ce que change le projet de loi 3</h2>
+        <p class="section-subtitle">
+          La « Loi visant à améliorer la transparence, la gouvernance et le processus démocratique de diverses associations en milieu de travail » transforme la façon dont les décisions importantes sont prises au sein des syndicats québécois. Elle a pour objectif de garantir que la volonté des membres se reflète dans les décisions qui les concernent directement.
+        </p>
+      </div>
+      <div class="pl3-context">
+        <p>
+          Concrètement, la loi impose qu'un nombre précis d'objets soit soumis à l'approbation des membres par scrutin secret, selon des modalités strictes : fenêtre minimale de 24 heures, préavis obligatoire, avis à chaque membre, protection contre l'intimidation. Le vote à main levée tenu en une seule soirée d'assemblée n'est plus suffisant pour ces objets.
+        </p>
+        <p>
+          Les syndicats doivent ajuster leurs pratiques de scrutin pour l'ensemble de leurs votes à venir. L'enjeu : disposer d'une plateforme de vote fiable, indépendante et conforme, qui permette de tenir les scrutins requis sans paralyser le fonctionnement du syndicat.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="exigences">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Nouvelles obligations</span>
+        <h2 class="section-title">Six décisions qui doivent passer par scrutin secret</h2>
+        <p class="section-subtitle">
+          La loi énumère les objets dont la décision ne peut plus être prise par l'exécutif ni à main levée. Chacun doit faire l'objet d'un vote secret des membres.
+        </p>
+      </div>
+      <div class="votes-grid">
+        {votesObligatoires.map((vote, i) => (
+          <div class="vote-card">
+            <div class="vote-card-number">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="vote-card-title">{vote.title}</h3>
+            <p class="vote-card-desc">{vote.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Modalités de scrutin</span>
+        <h2 class="section-title">Les règles qui s'appliquent à chaque vote</h2>
+        <p class="section-subtitle">
+          Quatre conditions doivent être respectées pour chacun des votes énumérés. Elles s'appliquent aux syndicats accrédités, à leurs fédérations et aux centrales syndicales.
+        </p>
+      </div>
+      <div class="modalites-grid">
+        {modalitesScrutin.map((mod) => (
+          <div class="modalite-card">
+            <h3 class="modalite-title">{mod.title}</h3>
+            <p class="modalite-desc">{mod.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Conformité en détail</span>
+        <h2 class="section-title">Chaque exigence du PL3, couverte par Votez.com</h2>
+        <p class="section-subtitle">
+          Les fonctionnalités de Votez.com couvrent point par point les obligations imposées par la loi. La plateforme a été conçue pour les syndicats québécois avant même l'adoption du PL3.
+        </p>
+      </div>
+      <div class="mapping-table-wrapper">
+        <table class="mapping-table">
+          <thead>
+            <tr>
+              <th>Exigence du PL3</th>
+              <th>Fonctionnalité Votez.com</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mapping.map((row) => (
+              <tr>
+                <td>{row.exigence}</td>
+                <td>{row.reponse}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Pour votre organisation</span>
+        <h2 class="section-title">Pourquoi Votez.com plutôt qu'une solution interne</h2>
+        <p class="section-subtitle">
+          Bâtir un mécanisme de vote conforme au PL3 à l'interne demande des ressources techniques et juridiques importantes. Votez.com est déjà là.
+        </p>
+      </div>
+      <div class="avantages-grid">
+        {avantages.map((av) => (
+          <div class="avantage-card">
+            <h3 class="avantage-title">{av.title}</h3>
+            <p class="avantage-desc">{av.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-title">Prêt à rendre vos scrutins conformes au PL3?</h2>
+      <p class="cta-text">Notre équipe peut configurer votre premier vote conforme en moins d'une semaine, avec accompagnement complet.</p>
+      <a href="/#contact" class="btn btn-primary btn-lg">Demander une démonstration</a>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="faq-pl3">
+    <div class="section-inner">
+      <div class="faq-layout">
+        <div class="faq-header">
+          <span class="section-label">FAQ PL3</span>
+          <h2 class="section-title">Questions fréquentes sur le projet de loi 3</h2>
+          <p class="faq-header-text">Les questions que nous posent le plus souvent les syndicats qui se préparent à la conformité.</p>
+        </div>
+        <div class="faq-list">
+          {faqsPL3.map((faq) => (
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>{faq.question}</span>
+                <svg class="faq-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </summary>
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero PL3 */
+  .pl3-hero {
+    background: linear-gradient(170deg, var(--color-dark) 0%, var(--color-dark-lighter) 60%, #2D3D4F 100%);
+    color: #fff;
+    padding: 8rem 2rem 7rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pl3-hero-blob {
+    position: absolute;
+    z-index: 0;
+    animation: pl3Blob 14s ease-in-out infinite;
+  }
+
+  .pl3-hero-blob-1 {
+    top: -12%;
+    right: -8%;
+    width: 45vw;
+    height: 45vw;
+    background: rgba(95, 159, 224, 0.08);
+    border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
+  }
+
+  .pl3-hero-blob-2 {
+    bottom: -18%;
+    left: -5%;
+    width: 35vw;
+    height: 35vw;
+    background: rgba(94, 111, 127, 0.07);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation-direction: reverse;
+    animation-duration: 11s;
+  }
+
+  @keyframes pl3Blob {
+    0%, 100% { border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%; }
+    33% { border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%; }
+    66% { border-radius: 30% 70% 40% 60% / 60% 40% 70% 30%; }
+  }
+
+  .pl3-hero-inner {
+    max-width: 44rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pl3-hero-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1.25rem;
+    font-family: var(--font-body);
+  }
+
+  .pl3-hero-title {
+    font-size: 3rem;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .pl3-hero-subtitle {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+    max-width: 36rem;
+    margin: 0 auto 2.5rem;
+  }
+
+  .pl3-hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .pl3-hero-actions .btn-lg {
+    padding: 1.0625rem 2.5rem;
+    font-size: 1rem;
+  }
+
+  /* Contexte */
+  .pl3-context {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .pl3-context p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Votes grid */
+  .votes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .vote-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: transform var(--transition), box-shadow var(--transition-soft);
+  }
+
+  .vote-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .vote-card-number {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .vote-card-title {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .vote-card-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    line-height: 1.65;
+  }
+
+  /* Modalités grid */
+  .modalites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .modalite-card {
+    padding: 1.75rem;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-accent-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .modalite-title {
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+  }
+
+  .modalite-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    line-height: 1.65;
+  }
+
+  /* Mapping table */
+  .mapping-table-wrapper {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .mapping-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  .mapping-table thead {
+    background: var(--color-dark);
+    color: #fff;
+  }
+
+  .mapping-table th {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: var(--font-body);
+  }
+
+  .mapping-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .mapping-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .mapping-table td:first-child {
+    font-weight: 700;
+    color: var(--color-primary);
+    width: 35%;
+  }
+
+  .mapping-table td:last-child {
+    color: var(--color-text-light);
+  }
+
+  .mapping-table tbody tr:hover {
+    background: var(--color-bg-alt);
+  }
+
+  /* Avantages grid */
+  .avantages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .avantage-card {
+    padding: 2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .avantage-title {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .avantage-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    line-height: 1.65;
+  }
+
+  /* CTA section (réutilise les styles de l'accueil) */
+  .cta-section {
+    background: linear-gradient(170deg, var(--color-dark) 0%, var(--color-dark-lighter) 60%, #2D3D4F 100%);
+    color: #fff;
+    padding: 6rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-inner {
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: 2.25rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-text {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 2.5rem;
+    line-height: 1.65;
+  }
+
+  .cta-inner .btn-lg {
+    padding: 1.0625rem 2.75rem;
+    font-size: 1rem;
+  }
+
+  /* FAQ (réutilise le style FaqItem de l'accueil) */
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .faq-header .section-title {
+    text-align: left;
+  }
+
+  .faq-header-text {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.65;
+    margin-top: 0.75rem;
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    list-style: none;
+    gap: 1.5rem;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--color-accent);
+    transition: transform var(--transition);
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding-bottom: 1.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+  }
+
+  /* Wave divider */
+  .wave-divider {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -1px;
+  }
+
+  .wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 60px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .pl3-hero {
+      padding: 5rem 1.25rem 4rem;
+    }
+
+    .pl3-hero-title {
+      font-size: 2rem;
+    }
+
+    .pl3-hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .pl3-hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .votes-grid,
+    .modalites-grid,
+    .avantages-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mapping-table {
+      font-size: 0.875rem;
+    }
+
+    .mapping-table th,
+    .mapping-table td {
+      padding: 1rem;
+    }
+
+    .mapping-table td:first-child {
+      width: 40%;
+    }
+
+    .cta-section {
+      padding: 4rem 1.25rem;
+    }
+
+    .cta-title {
+      font-size: 1.75rem;
+    }
+
+    .faq-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .faq-header {
+      position: static;
+    }
+
+    .wave-divider svg {
+      height: 30px;
+    }
+  }
+</style>
