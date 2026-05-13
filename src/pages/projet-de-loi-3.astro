@@ -12,7 +12,7 @@ const votesObligatoires = [
   },
   {
     title: 'Cotisation facultative',
-    description: 'Nouvelle catégorie imposée par le PL3 pour financer des activités qui ne relèvent pas de la défense des droits prévus par la loi ou la convention collective. Vote obligatoire au moins une fois par année.',
+    description: 'Nouvelle catégorie créée par la loi pour financer certaines activités qui ne relèvent pas directement de la négociation ou de l\'application d\'une convention collective (interventions juridiques sur le caractère opérant d\'une loi, campagnes publicitaires politiques, mouvements sociaux, etc.). La présentation aux membres et le vote au scrutin secret doivent avoir lieu au moins une fois par année.',
   },
   {
     title: 'Ratification de convention collective',
@@ -24,7 +24,7 @@ const votesObligatoires = [
   },
   {
     title: 'Modification des statuts',
-    description: 'Les statuts et règlements du syndicat doivent être soumis à l\'approbation des membres au moins une fois aux cinq ans.',
+    description: 'Les statuts et règlements du syndicat doivent être présentés aux membres lors d\'une assemblée et approuvés par la majorité de ceux qui exercent leur droit de vote, à des intervalles ne dépassant pas cinq ans. Disposition en vigueur le 2 octobre 2026.',
   },
 ];
 
@@ -38,12 +38,16 @@ const modalitesScrutin = [
     description: 'La fenêtre de vote doit rester ouverte au moins 24 heures pour permettre aux membres de tous les quarts de travail de participer.',
   },
   {
-    title: 'Préavis de 72 heures',
-    description: 'Un délai minimal de 72 heures doit s\'écouler entre la présentation de la question en assemblée générale et l\'ouverture du scrutin.',
+    title: 'Préavis de 72 heures (cotisation facultative)',
+    description: 'Pour le vote sur la cotisation facultative, le scrutin ne peut débuter dans les 72 heures suivant la présentation aux membres et doit se tenir dans les 30 jours suivants. Ce délai ne s\'applique pas aux autres votes prévus aux articles 20.1 à 20.3 du Code du travail.',
   },
   {
-    title: 'Protection contre l\'intimidation',
-    description: 'Sanctions de 5 000 $ à 50 000 $ pour toute personne qui entrave l\'exercice du droit de vote ou exerce une pression sur un votant.',
+    title: 'Avis de convocation à chaque membre',
+    description: 'L\'avis de convocation d\'une assemblée doit indiquer la date, l\'heure et le lieu, ainsi que l\'ordre du jour, et être transmis à chacun des membres.',
+  },
+  {
+    title: 'Sanctions pénales',
+    description: 'Amende de 5 000 $ à 50 000 $ pour toute dépense faite avec des cotisations facultatives sans autorisation préalable des membres au scrutin secret. L\'article 13 modifié interdit aussi l\'intimidation ou les menaces envers un salarié qui exprime sa dissidence.',
   },
 ];
 
@@ -56,6 +60,8 @@ const mapping = [
   { exigence: 'Vote annuel récurrent sur cotisation facultative', reponse: 'Duplication de campagnes pour réutiliser la configuration existante d\'une année à l\'autre' },
   { exigence: 'Poids de vote pour les délégués', reponse: 'Vote pondéré natif pour les délégués, poids verrouillé au moment du vote pour empêcher toute modification rétroactive' },
   { exigence: 'Préavis à chaque membre', reponse: 'Envoi massif d\'invitations par courriel, rappels ciblés automatiques' },
+  { exigence: 'Délai de 72 heures entre présentation et scrutin (cotisation facultative)', reponse: 'Programmation de la date d\'ouverture du scrutin au moment de la configuration de la campagne' },
+  { exigence: 'Modalités de dépouillement, recensement et communication des résultats', reponse: 'Compilation automatique, rapport certifié PDF, communication des résultats aux salariés via la plateforme' },
   { exigence: 'Traçabilité et archivage', reponse: 'Trace de vote sans lien avec l\'identité, export Excel, rapport certifié PDF' },
   { exigence: 'Vérifiabilité du résultat', reponse: 'Preuve à divulgation nulle de connaissance, décompte reproductible par n\'importe qui' },
   { exigence: 'Indépendance de l\'administration du vote', reponse: 'Gestion clé en main par Neosapiens à titre de tiers indépendant' },
@@ -88,7 +94,11 @@ const faqsPL3 = [
   },
   {
     question: 'Depuis quand la loi est-elle en vigueur?',
-    answer: 'Le projet de loi 3 a été sanctionné le 2 avril 2026 et est devenu le chapitre 4 des Lois de 2026. Certaines dispositions entrent en vigueur immédiatement, d\'autres progressivement. Les syndicats doivent adapter leurs pratiques de scrutin dès maintenant pour les votes à venir.',
+    answer: 'La loi a été sanctionnée le 2 avril 2026 et constitue le chapitre 4 des Lois de 2026. La majorité des dispositions sont entrées en vigueur le 2 avril 2026 : règle des 24 heures pour le scrutin secret, vote sur cotisation principale, régime des cotisations facultatives, avis de convocation, sanctions pénales. Les dispositions sur le contenu obligatoire des statuts et règlements (articles 20.3.3 et 20.3.4 du Code du travail) entrent en vigueur le 2 octobre 2026. Les règles sur les états financiers et le rapport sur l\'utilisation des ressources financières s\'appliquent à l\'exercice financier débutant après la sanction (premier rapport au 1er avril 2027 pour la plupart des associations).',
+  },
+  {
+    question: 'Notre syndicat doit-il tenir un vote spécifique pour les cotisations déjà en cours?',
+    answer: 'Oui. Les articles 22 à 25 de la loi prévoient une mesure transitoire. Au plus tard le 2 octobre 2026 (six mois après la sanction), l\'association accréditée doit présenter aux membres, lors d\'une assemblée, la part des cotisations actuelles qu\'elle prévoit dédier au financement des activités visées par la cotisation facultative (interventions juridiques sur la validité de lois, campagnes publicitaires politiques, mouvements sociaux, etc.). Dans les 30 jours suivants, un vote au scrutin secret doit être tenu, avec un délai d\'au moins 72 heures entre la présentation et l\'ouverture du scrutin, et une durée minimale de 24 heures. Sans cette autorisation, les cotisations existantes ne peuvent plus financer ces activités.',
   },
   {
     question: 'Peut-on continuer à tenir les votes à main levée en assemblée générale?',
@@ -130,7 +140,7 @@ const faqSchemaPL3 = {
       <p class="pl3-hero-label">Conformité réglementaire</p>
       <h1 class="pl3-hero-title">Votre syndicat est prêt pour le projet de loi 3</h1>
       <p class="pl3-hero-subtitle">
-        Le projet de loi 3 sur la transparence et la gouvernance syndicale a été sanctionné le 2 avril 2026. Il rend le scrutin secret et la fenêtre de 24 heures obligatoires pour six décisions syndicales clés. Votez.com couvre déjà chacune de ces exigences.
+        La Loi visant à améliorer la transparence, la gouvernance et le processus démocratique de diverses associations en milieu de travail a été sanctionnée le 2 avril 2026. Elle est entrée en vigueur le jour même, à l'exception des dispositions sur les statuts et règlements (2 octobre 2026). Le scrutin secret et la fenêtre de 24 heures sont obligatoires pour six décisions syndicales clés. Votez.com couvre déjà chacune de ces exigences.
       </p>
       <div class="pl3-hero-actions">
         <a href="/#contact" class="btn btn-primary btn-lg">Demander une démonstration</a>
@@ -202,6 +212,48 @@ const faqSchemaPL3 = {
             <p class="modalite-desc">{mod.description}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Échéance critique</span>
+        <h2 class="section-title">Une vague de votes obligatoires d'ici novembre 2026</h2>
+        <p class="section-subtitle">
+          Les articles 22 à 25 de la loi prévoient des mesures transitoires. Les syndicats qui veulent continuer d'utiliser leurs cotisations actuelles pour financer des activités désormais visées par la cotisation facultative doivent tenir un vote au scrutin secret dans un délai serré.
+        </p>
+      </div>
+      <div class="transitoire-wrapper">
+        <div class="transitoire-timeline">
+          <div class="transitoire-step">
+            <div class="transitoire-date">2 avril 2026</div>
+            <h3 class="transitoire-title">Sanction de la loi</h3>
+            <p class="transitoire-desc">Point de départ des délais transitoires.</p>
+          </div>
+          <div class="transitoire-step">
+            <div class="transitoire-date">D'ici le 2 octobre 2026</div>
+            <h3 class="transitoire-title">Présentation aux membres</h3>
+            <p class="transitoire-desc">Au plus tard six mois après la sanction, l'association doit présenter aux membres, lors d'une assemblée, la part des cotisations actuelles qu'elle prévoit dédier au financement des activités visées par la cotisation facultative.</p>
+          </div>
+          <div class="transitoire-step">
+            <div class="transitoire-date">+ 30 jours suivant la présentation</div>
+            <h3 class="transitoire-title">Tenue du scrutin secret</h3>
+            <p class="transitoire-desc">Vote majoritaire des salariés. Le scrutin doit débuter au moins 72 heures après la présentation et le droit de vote doit pouvoir s'exercer pour une durée d'au moins 24 heures.</p>
+          </div>
+          <div class="transitoire-step">
+            <div class="transitoire-date">+ 30 jours suivant le scrutin</div>
+            <h3 class="transitoire-title">Création du fonds distinct</h3>
+            <p class="transitoire-desc">Si l'utilisation est autorisée, les sommes doivent être placées dans un fonds distinct et servir exclusivement aux activités visées à l'article 47.0.1 du Code du travail.</p>
+          </div>
+        </div>
+        <div class="transitoire-cta">
+          <p class="transitoire-cta-text">
+            Concrètement, chaque syndicat québécois qui veut maintenir le financement de ses activités politiques, judiciaires ou de mouvements sociaux doit organiser un vote conforme avant la fin de l'année 2026. Votez.com peut configurer et tenir ces scrutins clé en main.
+          </p>
+          <a href="/#contact" class="btn btn-primary btn-lg">Planifier le vote de transition</a>
+        </div>
       </div>
     </div>
   </section>
@@ -463,6 +515,75 @@ const faqSchemaPL3 = {
     line-height: 1.65;
   }
 
+  /* Période transitoire */
+  .transitoire-wrapper {
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  .transitoire-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .transitoire-step {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-accent);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.25rem;
+    position: relative;
+    transition: transform var(--transition), box-shadow var(--transition-soft);
+  }
+
+  .transitoire-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .transitoire-date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-body);
+  }
+
+  .transitoire-title {
+    font-size: 1.0625rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .transitoire-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+
+  .transitoire-cta {
+    background: var(--color-accent-light);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .transitoire-cta-text {
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* Mapping table */
   .mapping-table-wrapper {
     background: var(--color-surface);
@@ -686,8 +807,13 @@ const faqSchemaPL3 = {
 
     .votes-grid,
     .modalites-grid,
-    .avantages-grid {
+    .avantages-grid,
+    .transitoire-timeline {
       grid-template-columns: 1fr;
+    }
+
+    .transitoire-cta {
+      padding: 2rem 1.25rem;
     }
 
     .mapping-table {
